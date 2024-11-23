@@ -59,6 +59,6 @@ function hslToRgb(h: number, s: number, l: number, maximums: any = {}): {r: numb
     }
     
     return {
-        r: 
+        r: (r_ + m) * maximums.rgb.r
     }
 }
