@@ -1,4 +1,20 @@
-function hslToRgb(h: number, s: number, l: number, maximums: any = {}): {r: number, g: number, b:number} {
+function hslToRgb(h: number, s: number, l: number, maximums: any = {}): {r: number, g: number, b:number} | null {
+    /*
+    The function hslToRgb() convert HSL colors in RGB. You can choose the value ranges in the fourth argument.
+    How to use :
+    hslToRgb(h: number, s: number, l: number, {
+        hsl: {
+            h: number = 360,
+            s: number = 100,
+            l: number = 100
+        },
+        rgb: {
+            r: number = 255,
+            g: number = 255,
+            b: number = 255
+        }
+    })
+    */
     maximums.hsl = maximums.hsl || {
         h: 360,
         s: 100,
@@ -18,9 +34,15 @@ function hslToRgb(h: number, s: number, l: number, maximums: any = {}): {r: numb
     maximums.rgb.g = maximums.rgb.g || 255;
     maximums.rgb.b = maximums.rgb.b || 255;
     
-    const h_ = h / maximums.hsl.h * 360;
+    let h_ = h / maximums.hsl.h * 360;
     const s_ = s / maximums.hsl.s;
     const l_ = l / maximums.hsl.l;
+    if (h_ < 0 || h_ > 360) {
+        return null;
+    }
+    else if (h_ == 360) {
+        h_ = 0;
+    }
 
     const c = (1 - Math.abs(2 * l_ - 1)) * s_;
     const x = c * (1 - Math.abs((h_ / 60) % 2 - 1));
@@ -64,11 +86,3 @@ function hslToRgb(h: number, s: number, l: number, maximums: any = {}): {r: numb
         b: (b_ + m) * maximums.rgb.b_
     };
 }
-
-hslToRgb(56, 90, 34, {
-    rgb: {
-        r: 100,
-        g: 100,
-        b: 100
-    }
-});
