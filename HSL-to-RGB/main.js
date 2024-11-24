@@ -37,7 +37,7 @@ function hslToRgb(h, s, l, maximums) {
     let h_ = h / maximums.hsl.h * 360;
     const s_ = s / maximums.hsl.s;
     const l_ = l / maximums.hsl.l;
-    if (h_ < 0 || h_ > 360) {
+    if (h_ < 0 || h_ > 360 || s_ < 0 || s_ > 1 || l_ < 0 || l_ > 1) {
         return null;
     }
     else if (h_ == 360) {
