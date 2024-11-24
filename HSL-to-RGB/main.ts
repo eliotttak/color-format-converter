@@ -59,6 +59,16 @@ function hslToRgb(h: number, s: number, l: number, maximums: any = {}): {r: numb
     }
     
     return {
-        r: (r_ + m) * maximums.rgb.r
-    }
+        r: (r_ + m) * maximums.rgb.r,
+        g: (g_ + m) * maximums.rgb.g_,
+        b: (b_ + m) * maximums.rgb.b_
+    };
 }
+
+hslToRgb(56, 90, 34, {
+    rgb: {
+        r: 100,
+        g: 100,
+        b: 100
+    }
+});
