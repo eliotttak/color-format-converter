@@ -82,7 +82,7 @@ function hslToRgb(h, s, l, maximums) {
     
     return {
         r: (r_ + m) * maximums.rgb.r,
-        g: (g_ + m) * maximums.rgb.g_,
-        b: (b_ + m) * maximums.rgb.b_
+        g: (g_ + m) * maximums.rgb.g,
+        b: (b_ + m) * maximums.rgb.b
     };
 }
