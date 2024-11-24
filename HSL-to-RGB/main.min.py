@@ -1,4 +1,4 @@
-def hslToRgb(h,s,l,maximums):
+def hsl_to_rgb(h,s,l,maximums):
     maximums["hsl"]=getattr(maximums,'hsl',{"h":360,"s":100,"l":100})
     maximums["rgb"]=getattr(maximums,'rgb',{"r":255,"g": 255,"b": 255})
     maximums["hsl"]["h"]=getattr(maximums["hsl"],"h",360)

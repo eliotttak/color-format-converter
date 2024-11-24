@@ -1,8 +1,8 @@
-def hslToRgb(h, s, l, maximums):
+def hsl_to_rgb(h, s, l, maximums):
     """
-    The function hslToRgb() convert HSL colors in RGB. You can choose the value ranges in the fourth argument.
+    The function hsl_to_rgb() convert HSL colors in RGB. You can choose the value ranges in the fourth argument.
     How to use :
-    hslToRgb(h: number, s: number, l: number, {
+    hsl_to_rgb(h: number, s: number, l: number, {
         hsl: {
             h: number = 360,
             s: number = 100,
