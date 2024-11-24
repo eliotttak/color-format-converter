@@ -27,7 +27,7 @@ typedef struct {
 } RGB;
 
 // Fonction pour convertir les valeurs HSL en RGB
-RGB hslToRgb(double h, double s, double l, Maximums maximums) {
+RGB hsl_to_rgb(double h, double s, double l, Maximums maximums) {
     RGB rgb;
     
     double h_ = h / maximums.hsl.h * 360.0;
@@ -80,18 +80,4 @@ RGB hslToRgb(double h, double s, double l, Maximums maximums) {
     rgb.b = (b_ + m) * maximums.rgb.b;
 
     return rgb;
-}
-
-int main() {
-    // Appeler la fonction de conversion avec les valeurs directement
-    RGB result = hslToRgb(200, 0.5, 0.4, (Maximums){{360, 100, 100}, {255, 255, 255}});
-    
-    // Vérifier et afficher les résultats
-    if (result.r == -1 && result.g == -1 && result.b == -1) {
-        printf("Erreur dans la conversion HSL vers RGB\n");
-    } else {
-        printf("RGB: R = %d, G = %d, B = %d\n", result.r, result.g, result.b);
-    }
-
-    return 0;
 }
