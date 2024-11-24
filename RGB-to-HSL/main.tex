@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{mathtools}
+\usepackage{amsmath}
+
+\title{HSL to RGB}
+\author{Eliott TAKVORIAN}
+\date{November 2024}
+
+\begin{document}
+    $R$ is the part of Red in the color to translate.
+
+    $G$ is the part of Green in the color to translate.
+
+    $B$ is the part of Blue in the color to translate.
+
+    $M_{axR}$ is the possible maximum of $R$ (generaly 255 or 100\%).
+
+    $M_{axG}$ is the possible maximum of $G$ (generaly 255 or 100\%).
+
+    $M_{axB}$ is the possible maximum of $B$ (generaly 255 or 100\%).\\
+
+    $R'$, $G'$, $B'$, $C_{max}$, $C_{min}$, $\Delta$, $H'$, $S'$ and $L'$ are internal variables that mustn't be displayed.\\
+
+    $H$ is the Hue of the translated color.
+    
+    $S$ is the Saturation of the translated color.
+    
+    $L$ is the Luminosity of the translated color.
+    
+    $M_{axH}$ is the possible maximum of $H$ (generaly $360^\circ$).
+
+    $M_{axS}$ is the possible maximum of $S$ (generaly 100\%).
+
+    $M_{axL}$ is the possible maximum of $L$ (generaly 100\%).\\
+    
+    $R'=\frac{R}{M_{axR}}$\\
+    
+    $G'=\frac{G}{M_{axG}}$\\
+    
+    $B'=\frac{B}{M_{axB}}$\\
+
+    $C_{max}=\max({R'}, {G'}, {B'})$\\
+
+    $C_{min}=\min({R'}, {G'}, {B'})$\\
+
+    $\Delta=C_{min}-C_{max}$\\
+
+    $H'=
+    \begin{cases}
+        0^\circ & \Delta=0\\
+        60^\circ \times \frac{G'-B'}{\Delta} \mod 6 & C_{max}=R'\\
+        60^\circ \times \frac{B'-R'}{\Delta}+2 & C_{max}=G'\\
+        60^\circ \times \frac{R'-G'}{\Delta}+4 & C_{max}=B'\\
+    \end{cases}$\\
+
+    $S'=
+    \begin{cases}
+        0 & \Delta=0\\
+        \frac{\Delta}{1-|2\times L'-1|} & \Delta <> 0
+    \end{cases}$\\
+
+    $L' = \frac{C_{max}+C_{min}}{2}$\\
+
+    $H=\frac{H'}{360}\times M_{axH}$\\
+
+    $S=S'\times M_{axS}$\\
+
+    $L=L'\times M_{axL}$
+\end{document}
