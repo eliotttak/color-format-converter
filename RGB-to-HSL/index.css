@@ -40,7 +40,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .rgb-color-names.r {
-    color: red;
+    color: #FF0000;
 }
 
 .rgb-color-names.g {
@@ -48,5 +48,60 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .rgb-color-names.b {
-    color: blue;
+    color: #0000FF;
+}
+
+#to-copy-text{
+    display: none;
+}
+
+
+
+#isRounded {
+	display: inline-block;
+	position: relative;
+	width: 35px;
+	height: 20px;
+	cursor: pointer;
+	overflow: hidden;
+}
+
+#isRounded input {
+	position: absolute;
+	top: -15px;
+	left: -15px;
+	width: 0;
+	height: 0;
+}
+
+#isRounded input + span {
+    position: absolute;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   background: #99b4df;
+   border-radius: 15px;
+}
+
+#isRounded input:checked + span {
+	background: #346abf;
+}
+
+#isRounded input + span:before {
+	content: "";
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	left: 2px;
+	width: 16px;
+	height: 16px;
+	background: white;
+	border-radius: 50%;
+	transform: translateY(-50%);
+	transition: all .5s;
+}
+
+#isRounded input:checked + span:before {
+	left: 17px;
 }

@@ -17,7 +17,6 @@ function rgbToHsl(r, g, b, maximums = {}) {
         }        
     })
     */
-   debugger
     maximums.hsl = maximums.hsl || {
         h: 360,
         s: 100,

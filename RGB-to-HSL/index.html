@@ -3,11 +3,15 @@
     <head>
         <title>Convertisseur de RGB vers HSL</title>
         <meta charset="utf8">
-        <script type="text/javascript" src="main.js"></script>
+        <script type="text/javascript" src="main.min.js"></script>
         <link rel="stylesheet" href="index.css">
     </head>
     <body>
-        <input type="hidden" name="to-copy-input" id="to-copy-text">
+        <label id="isRounded">
+            <input type="checkbox" id="checkboxIsRounded"/>
+            <span></span>
+        </label> Arrondir le résultat <br /><br />       
+        <input type="text" name="to-copy-input" id="to-copy-text">
         <strong class="rgb-color-names r">R</strong><input type="range" class="range" name="r-range" id="r-range" min="0" max="255" value="0"/>
         <input type="number" class="number" name="r-number" id="r-number" min="0" max="255" value="0"/><br />
         <strong class="rgb-color-names g">G</strong><input type="range" class="range" name="g-range" id="g-range" min="0" max="255" value="0"/>
@@ -17,7 +21,7 @@
         <div id="color"></div>
 
         <h1><span id="hsl-h"></span>° <span id="hsl-s"></span>% <span id="hsl-l"></span>%</h1>
-        <button type="button">Copier le code HSL</button>
+        <button type="button" id="copy-hsl">Copier le code HSL</button>
         <script src="index.js" id="copy-hsl" type="text/javascript"></script>
     </body>
 </html>
