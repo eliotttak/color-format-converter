@@ -17,6 +17,16 @@ input[type="range"]::-webkit-slider-thumb {
     border: 1px solid white;
 }
 
+input[type="range"]::-moz-range-thumb {
+    -moz-appearance: none;
+    appearance: none;
+    width: 4px; /* Ajustez la largeur du curseur selon vos besoins */
+    height: 1cm; /* Ajustez la hauteur du curseur selon vos besoins */
+    background-color: #000000;
+    cursor: col-resize;
+    border: 1px solid white;
+}
+
 #color {
     position: absolute;
     top: 1%;
