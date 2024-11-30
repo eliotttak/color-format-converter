@@ -3,15 +3,21 @@
     <head>
         <title>Convertisseur de RGB vers HSL</title>
         <meta charset="utf8">
-        <script type="text/javascript" src="main.min.js"></script>
+        <script type="text/javascript" src="main.js"></script>
+        <link rel="stylesheet" href="index.css">
     </head>
     <body>
-        <input type="range" name="r-range" id="r-range" min="0" max="255" value="0"/>
-        <input type="number" name="r-number" id="r-number" min="0" max="255" value="0"/><br />
-        <input type="range" name="g-range" id="g-range" min="0" max="255" value="0"/>
-        <input type="number" name="g-number" id="g-number" min="0" max="255" value="0"/><br />
-        <input type="range" name="b-range" id="b-range" min="0" max="255" value="0"/>
-        <input type="number" name="b-number" id="b-number" min="0" max="255" value="0"/><br />
-        <script src="index.js" type="text/javascript"></script>
+        <input type="hidden" name="to-copy-input" id="to-copy-text">
+        <strong class="rgb-color-names r">R</strong><input type="range" class="range" name="r-range" id="r-range" min="0" max="255" value="0"/>
+        <input type="number" class="number" name="r-number" id="r-number" min="0" max="255" value="0"/><br />
+        <strong class="rgb-color-names g">G</strong><input type="range" class="range" name="g-range" id="g-range" min="0" max="255" value="0"/>
+        <input type="number" class="number" name="g-number" id="g-number" min="0" max="255" value="0"/><br />
+        <strong class="rgb-color-names b">B</strong><input type="range" class="range" name="b-range" id="b-range" min="0" max="255" value="0"/>
+        <input type="number" class="number" name="b-number" id="b-number" min="0" max="255" value="0"/><br />
+        <div id="color"></div>
+
+        <h1><span id="hsl-h"></span>° <span id="hsl-s"></span>% <span id="hsl-l"></span>%</h1>
+        <button type="button">Copier le code HSL</button>
+        <script src="index.js" id="copy-hsl" type="text/javascript"></script>
     </body>
 </html>

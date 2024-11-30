@@ -1,0 +1,42 @@
+input.range{
+    border: none;
+    appearance: none;
+    width: 50%;
+    color: rgba(127, 127, 127, 75%);
+    height: 1cm;
+    
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 4px; /* Ajustez la largeur du curseur selon vos besoins */
+    height: 1cm; /* Ajustez la hauteur du curseur selon vos besoins */
+    background-color: #000000;
+    cursor: col-resize;
+    border: 1px solid white;
+}
+
+#color {
+    position: absolute;
+    top: 1%;
+    left: 60%;
+    width: 150px;
+    height: 150px;
+}
+
+.rgb-color-names {
+    font-size: xx-large;
+}
+
+.rgb-color-names.r {
+    color: red;
+}
+
+.rgb-color-names.g {
+    color: #00FF00;
+}
+
+.rgb-color-names.b {
+    color: blue;
+}

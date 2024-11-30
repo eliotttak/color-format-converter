@@ -1,4 +1,4 @@
-function rgbToHsl(r, g, b, maximums) {
+function rgbToHsl(r, g, b, maximums = {}) {
     /*
     The function rgbToHsl() convert RGB colors in HSL. You can choose the value ranges in the fourth argument.
     How to use :
@@ -50,15 +50,17 @@ function rgbToHsl(r, g, b, maximums) {
     if (delta == 0) {
         h_ = 0;
     }
+    else if (cMax == b_) {
+        h_ = 60 * (((r_ - g_) / delta) + 4);
+    }
+    else if (cMax == g_) {
+        h_ = 60 * (((b_ - r_) / delta) + 2);
+    }
     else if (cMax == r_) {
         h_ = 60 * ((g_ - b_) / delta) % 6;
     }
-    else if (cMax == g_) {
-        h_ = 60 * ((b_ - r_) / delta) + 2;
-    }
-    else if (cMax == b_) {
-        h_ = 60 * ((r_ - g_) / delta) + 4;
-    }
+
+    l_ = (cMax + cMin) / 2;
 
     if (delta == 0) {
         s_ = 0;
@@ -67,11 +69,11 @@ function rgbToHsl(r, g, b, maximums) {
         s_ = delta / (1 - Math.abs(2 * l_ - 1));
     }
 
-    l_ = (cMax + cMin) / 2;
-
-    return {
+    let result = {
         h: (h_ / 360) * maximums.hsl.h,
         s: s_ * maximums.hsl.s,
         l: l_ * maximums.hsl.l
     }
+
+    return result
 }
