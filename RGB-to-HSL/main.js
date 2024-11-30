@@ -1,3 +1,5 @@
+const mod = (a, n) => ((a % n ) + n ) % n;
+
 function rgbToHsl(r, g, b, maximums = {}) {
     /*
     The function rgbToHsl() convert RGB colors in HSL. You can choose the value ranges in the fourth argument.
@@ -15,6 +17,7 @@ function rgbToHsl(r, g, b, maximums = {}) {
         }        
     })
     */
+   debugger
     maximums.hsl = maximums.hsl || {
         h: 360,
         s: 100,
@@ -57,8 +60,12 @@ function rgbToHsl(r, g, b, maximums = {}) {
         h_ = 60 * (((b_ - r_) / delta) + 2);
     }
     else if (cMax == r_) {
-        h_ = 60 * ((g_ - b_) / delta) % 6;
+        h_ = 60 * mod(((g_ - b_) / delta), 6);
     }
+
+    if (h_ < 0) {
+        h_ += 360;
+    } 
 
     l_ = (cMax + cMin) / 2;
 
