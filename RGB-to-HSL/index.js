@@ -80,10 +80,47 @@ bNumber.addEventListener("input", evt => {
 })
 
 copyHslButton.addEventListener("click", evt => {
+    /* Copy the text */
     toCopyHidden.value = `hsl(${lastHslResults.h}deg ${lastHslResults.s}% ${lastHslResults.l}%)`
     toCopyHidden.select()
     toCopyHidden.setSelectionRange(0, 99999);
     navigator.clipboard.writeText(toCopyHidden.value);
+
+    /* Show "Copié !" with a green background */
+    copyHslButton.innerHTML = "Copié !"
+    copyHslButton.style.backgroundColor = "#00B13B"
+    setTimeout(() => {
+        copyHslButton.innerHTML = "Copier le code HSL"
+        copyHslButton.style.backgroundColor = "#CCCCCC"
+    }, 2000)
+})
+
+copyHslButton.addEventListener("mouseover", evt => {
+    const bgColor = getComputedStyle(copyHslButton).getPropertyValue("background-color")
+    copyHslButton.style.backgroundColor = (
+        bgColor == "rgb(204, 204, 204)" ?
+        "#BBBBBB" :
+        (
+            bgColor == "rgb(0, 177, 59)" ?
+            "#00A02A" :
+            copyHslButton.backgroundColor
+        )
+        
+    )
+})
+
+copyHslButton.addEventListener("mouseout", evt => {
+    const bgColor = getComputedStyle(copyHslButton).getPropertyValue("background-color")
+    copyHslButton.style.backgroundColor = (
+        bgColor == "rgb(187, 187, 187)" ?
+        "#CCCCCC" :
+        (
+            bgColor == "rgb(0, 160, 42)" ?
+            "#00B13B" :
+            copyHslButton.backgroundColor
+        )
+        
+    )
 })
 
 isRoundedCheckbox.addEventListener("click", () => {
