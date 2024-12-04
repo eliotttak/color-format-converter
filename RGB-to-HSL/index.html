@@ -5,23 +5,33 @@
         <meta charset="utf8">
         <script type="text/javascript" src="main.min.js"></script>
         <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="../highlight/styles/vs2015.min.css">
+        <script src="../highlight/highlight.min.js"></script>
+        <script type="text/javascript" src="../highlight/languages/javascript.min.js" async onload="hljs.highlightAll();"></script>
     </head>
     <body>
-        <label id="isRounded">
-            <input type="checkbox" id="checkboxIsRounded"/>
-            <span></span>
-        </label> Arrondir le résultat <br /><br />       
-        <input type="text" name="to-copy-input" id="to-copy-text">
+
+        <textarea name="to-copy-input" id="to-copy-text"></textarea>
         <strong class="rgb-color-names r">R</strong><input type="range" class="range" name="r-range" id="r-range" min="0" max="255" value="0"/>
         <input type="number" class="number" name="r-number" id="r-number" min="0" max="255" value="0"/><br />
         <strong class="rgb-color-names g">G</strong><input type="range" class="range" name="g-range" id="g-range" min="0" max="255" value="0"/>
         <input type="number" class="number" name="g-number" id="g-number" min="0" max="255" value="0"/><br />
         <strong class="rgb-color-names b">B</strong><input type="range" class="range" name="b-range" id="b-range" min="0" max="255" value="0"/>
         <input type="number" class="number" name="b-number" id="b-number" min="0" max="255" value="0"/><br />
-        <div id="color"></div>
+        <div id="color"></div> <br />
 
+        <label id="isRounded">
+            <input type="checkbox" checked id="checkboxIsRounded"/>
+            <span></span>
+        </label><label id="labelIsRounded" for="checkboxIsRounded"> Arrondir le résultat</label><br />
         <h1><span id="hsl-h"></span>° <span id="hsl-s"></span>% <span id="hsl-l"></span>%</h1>
-        <button type="button" id="copy-hsl">Copier le code HSL</button>
+        <button type="button" id="copy-hsl">Copier le code HSL</button><br /><br />
+        <H2>Comment avons-nous fait ça ?</H2>
+        <div id="content-pdf-iframe"><iframe src="http://localhost:8895/RGB-to-HSL/main.pdf" id="pdf-iframe">Désolé, votre navigateur ne prend pas en charge les balises &lt;iframe&gt;</iframe></div>
+        <pre><code class="language-javascript" id="highlighted-js"></code></pre>
+        <pre><code class="language-tex" id="highlighted-tex"></code></pre>
+        <pre><code class="language-py" id="highlighted-py"></code></pre>
+        
         <script src="index.js" id="copy-hsl" type="text/javascript"></script>
     </body>
 </html>

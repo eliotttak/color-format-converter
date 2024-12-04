@@ -80,12 +80,12 @@ input[type="range"]::-moz-range-thumb {
    bottom: 0;
    left: 0;
    right: 0;
-   background: #99b4df;
+   background: #CCCCCC;
    border-radius: 15px;
 }
 
 #isRounded input:checked + span {
-	background: #346abf;
+	background: #00b13b;
 }
 
 #isRounded input + span:before {
@@ -105,3 +105,28 @@ input[type="range"]::-moz-range-thumb {
 #isRounded input:checked + span:before {
 	left: 17px;
 }
+
+
+#labelIsRounded {
+    cursor: pointer;
+}
+
+#copy-hsl {
+    appearance: none;
+    border: 0.5px solid;
+    background-color: #CCCCCC;
+    width: 150px;
+    text-align: center;
+}
+
+#pdf-iframe, #js-iframe, #ts-iframe, #tex-iframe {
+    width: 100%;
+    height: 0%; /* Hauteur de la fenêtre d'affichage */
+    min-height: 297mm; /* Hauteur standard d'une feuille A4 */
+}
+
+#content-pdf-iframe, #content-js-iframe, #content-ts-iframe, #content-tex-iframe {
+    width: 100%;
+    text-align: center;
+}
+

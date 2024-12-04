@@ -76,7 +76,8 @@ const server = http.createServer((request, result) => { // création du server
                 case "tex":
                     type = "application/x-tex"
                     break
-                                        
+                case "py":
+                    type = "application/py"
             }
             let disp = {
                 status : "OK",

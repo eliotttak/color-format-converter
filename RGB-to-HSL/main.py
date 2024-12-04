@@ -1,3 +1,6 @@
+def mod(a, n):
+    return ((a % n) + n) % n
+
 def rgb_to_hsl(r, g, b, maximums):
     """
     The function rgb_to_hsl() convert RGB colors in HSL. You can choose the value ranges in the fourth argument.
@@ -49,24 +52,24 @@ def rgb_to_hsl(r, g, b, maximums):
     h_ = None, s_ = None, l_ = None
     if delta == 0 :
         h_ = 0
-    
-    elif c_max == r_ :
-        h_ = 60 * ((g_ - b_) / delta) % 6
-    
-    elif c_max == g_ :
-        h_ = 60 * ((b_ - r_) / delta) + 2
-    
     elif c_max == b_ :
-        h_ = 60 * ((r_ - g_) / delta) + 4
+        h_ = 60 * (((r_ - g_) / delta) + 4)
+    elif c_max == g_ :
+        h_ = 60 * (((b_ - r_) / delta) + 2)
+    elif c_max == r_ :
+        h_ = 60 * mod(((g_ - b_) / delta), 6)
     
+    if h_ < 0:
+        h_ += 360
+
+    l_ = (c_max + c_min) / 2
+
 
     if delta == 0 :
         s_ = 0
-    
     else :
         s_ = delta / (1 - abs(2 * l_ - 1))
     
-    l_ = (c_max + c_min) / 2
     
     return {
         "h": (h_ / 360) * maximums["hsl"]["h"],

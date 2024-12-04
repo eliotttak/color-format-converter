@@ -11,7 +11,47 @@ const lSpan = document.getElementById("hsl-l")
 const copyHslButton = document.getElementById("copy-hsl")
 const toCopyHidden = document.getElementById("to-copy-text")
 const isRoundedCheckbox = document.getElementById("checkboxIsRounded")
+const highLightedJS = document.getElementById("highlighted-js")
+const highLightedTEX = document.getElementById("highlighted-tex")
+const highLightedPY = document.getElementById("highlighted-py")
+
 let lastHslResults = {}
+let head = document.getElementsByClassName("head")[0]
+
+
+async function pause(duration) {
+  try {
+    await new Promise(resolve => {
+      setTimeout(resolve, duration);
+    });
+  } catch (error) {
+    console.error('Erreur lors de la pause :', error);
+  }
+}
+
+
+
+async function ajax(url) {
+    let toReturnValue
+    let isReceived = false
+    let toReturn = ""
+    const req = new XMLHttpRequest();
+    req.addEventListener("load", () => {
+        isReceived = true
+        toReturnValue =  req.responseText
+    });
+    req.open("GET", url);
+    req.send();
+    while (true) {
+        if (isReceived) {
+            console.log("received")
+            return toReturnValue
+        }
+        await pause(500)
+    }
+}
+
+
 
 function roundNumber(number, digits) {
     var multiple = Math.pow(10, digits);
@@ -81,7 +121,7 @@ bNumber.addEventListener("input", evt => {
 
 copyHslButton.addEventListener("click", evt => {
     /* Copy the text */
-    toCopyHidden.value = `hsl(${lastHslResults.h}deg ${lastHslResults.s}% ${lastHslResults.l}%)`
+    toCopyHidden.innerHTML = `hsl(${lastHslResults.h}deg ${lastHslResults.s}% ${lastHslResults.l}%)`
     toCopyHidden.select()
     toCopyHidden.setSelectionRange(0, 99999);
     navigator.clipboard.writeText(toCopyHidden.value);
@@ -126,3 +166,20 @@ copyHslButton.addEventListener("mouseout", evt => {
 isRoundedCheckbox.addEventListener("click", () => {
     changeBgC()
 })
+
+
+async function loadDocuments(evt) {
+    document.removeEventListener("mouseover", loadDocuments)
+    highLightedJS.innerHTML = await ajax("main.js")
+    highLightedJS.setAttribute("data-highlighted", "")
+    highLightedTEX.innerHTML = await ajax("main.tex")
+    highLightedTEX.setAttribute("data-highlighted", "")
+    highLightedPY.innerHTML = await ajax("main.py")
+    highLightedPY.setAttribute("data-highlighted", "")
+    
+    
+    console.log("loaded")
+    hljs.highlightAll()
+}
+
+document.addEventListener("mouseover", loadDocuments)
