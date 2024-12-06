@@ -26,22 +26,27 @@
         <h1><span id="hsl-h"></span>° <span id="hsl-s"></span>% <span id="hsl-l"></span>%</h1>
         <button type="button" id="copy-hsl">Copier le code HSL</button><br /><br />
         <H2>Comment avons-nous fait ça ?</H2>
-        <div id="content-pdf-iframe"><iframe src="http://localhost:8895/RGB-to-HSL/main.pdf" id="pdf-iframe">Désolé, votre navigateur ne prend pas en charge les balises &lt;iframe&gt;</iframe></div>
-        <pre><code class="language-javascript" id="highlighted-js"></code></pre>
-        <pre><code class="language-tex" id="highlighted-tex"></code></pre>
-        <pre><code class="language-py" id="highlighted-py"></code></pre>
         <div class="source-code-chooser tabs-container">
             <div class="source-code-chooser choices-container">
                 <div class="source-code-chooser choice">
-                    <input type="radio" class="source-code-chooser radio-choice" name="source-code-chooser" id="scc-radio-pdf">
-                    <label id="scc-label-pdf" for="scc-pdf">PDF</label>
+                    <input type="radio" class="source-code-chooser radio-choice" name="source-code-chooser" id="scc-radio-pdf" checked>
+                    <label class="source-code-chooser label-choice" id="scc-label-pdf" for="scc-radio-pdf">PDF</label>
+                    <input type="radio" class="source-code-chooser radio-choice" name="source-code-chooser" id="scc-radio-js">
+                    <label class="source-code-chooser label-choice" id="scc-label-js" for="scc-radio-js">JavaScript</label>
+                    <input type="radio" class="source-code-chooser radio-choice" name="source-code-chooser" id="scc-radio-ts">
+                    <label class="source-code-chooser label-choice" id="scc-label-ts" for="scc-radio-ts">TypeScript</label>
                     <input type="radio" class="source-code-chooser radio-choice" name="source-code-chooser" id="scc-radio-latex">
-                    <label id="scc-label-latex" for="scc-latex">LaTex</label>
+                    <label class="source-code-chooser label-choice" id="scc-label-latex" for="scc-radio-latex">LaTex</label>
                     <input type="radio" class="source-code-chooser radio-choice" name="source-code-chooser" id="scc-radio-py">
-                    <label id="scc-label-py" for="scc-py">Python</label>
+                    <label class="source-code-chooser label-choice" id="scc-label-py" for="scc-radio-py">Python</label>
                 </div>
             </div>
-        </div>
+        </div> <br />
+        <div id="content-pdf-iframe"><iframe src="http://localhost:8895/RGB-to-HSL/main.pdf" id="pdf-iframe">Désolé, votre navigateur ne prend pas en charge les balises &lt;iframe&gt;</iframe></div>
+        <div id="content-hl-js"><pre><code class="language-javascript" id="highlighted-js"></code></pre></div>
+        <div id="content-hl-ts"><pre><code class="language-typescript" id="highlighted-ts"></code></pre></div>
+        <div id="content-hl-tex"><pre><code class="language-tex" id="highlighted-tex"></code></pre></div>
+        <div id="content-hl-py"><pre><code class="language-py" id="highlighted-py"></code></pre></div>
         <script src="index.js" id="copy-hsl" type="text/javascript"></script>
     </body>
 </html>

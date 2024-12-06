@@ -11,13 +11,26 @@ const lSpan = document.getElementById("hsl-l")
 const copyHslButton = document.getElementById("copy-hsl")
 const toCopyHidden = document.getElementById("to-copy-text")
 const isRoundedCheckbox = document.getElementById("checkboxIsRounded")
+const displayedPDF = document.getElementById("content-pdf-iframe")  
 const highLightedJS = document.getElementById("highlighted-js")
 const highLightedTEX = document.getElementById("highlighted-tex")
 const highLightedPY = document.getElementById("highlighted-py")
+const highLightedTS = document.getElementById("highlighted-ts")
+const showPdfLabel = document.getElementById("scc-label-pdf")
+const showJSLabel = document.getElementById("scc-label-js")
+const showTSLabel = document.getElementById("scc-label-ts")
+const showPyLabel = document.getElementById("scc-label-py")
+const showLaTexLabel = document.getElementById("scc-label-latex")
+
 
 let lastHslResults = {}
 let head = document.getElementsByClassName("head")[0]
 
+displayedPDF.style.display = "block"
+highLightedJS.style.display = "none"
+highLightedPY.style.display = "none"
+highLightedTEX.style.display = "none"
+highLightedTS.style.display = "none"
 
 async function pause(duration) {
   try {
@@ -176,6 +189,8 @@ async function loadDocuments(evt) {
     highLightedTEX.setAttribute("data-highlighted", "")
     highLightedPY.innerHTML = await ajax("main.py")
     highLightedPY.setAttribute("data-highlighted", "")
+    highLightedTS.innerHTML = await ajax("main.ts")
+    highLightedTS.setAttribute("data-highlighted", "")
     
     
     console.log("loaded")
@@ -183,3 +198,45 @@ async function loadDocuments(evt) {
 }
 
 document.addEventListener("mouseover", loadDocuments)
+
+showPdfLabel.addEventListener("click", evt => {
+    console.log("pdf")
+    displayedPDF.style.display = "block"
+    highLightedJS.style.display = "none"
+    highLightedPY.style.display = "none"
+    highLightedTEX.style.display = "none"
+    highLightedTS.style.display = "none"
+})
+
+showJSLabel.addEventListener("click", evt => {
+    displayedPDF.style.display = "none"
+    highLightedJS.style.display = "block"
+    highLightedPY.style.display = "none"
+    highLightedTEX.style.display = "none"
+    highLightedTS.style.display = "none"
+})
+
+showPyLabel.addEventListener("click", evt => {
+    displayedPDF.style.display = "none"
+    highLightedJS.style.display = "none"
+    highLightedPY.style.display = "block"
+    highLightedTEX.style.display = "none"
+    highLightedTS.style.display = "none"
+})
+
+showLaTexLabel.addEventListener("click", evt => {
+    displayedPDF.style.display = "none"
+    highLightedJS.style.display = "none"
+    highLightedPY.style.display = "none"
+    highLightedTEX.style.display = "block"
+    highLightedTS.style.display = "none"
+})
+
+showTSLabel.addEventListener("click", evt => {
+    displayedPDF.style.display = "none"
+    highLightedJS.style.display = "none"
+    highLightedPY.style.display = "none"
+    highLightedTEX.style.display = "none"
+    highLightedTS.style.display = "block    "
+})
+
