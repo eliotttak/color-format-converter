@@ -10,7 +10,6 @@
         <script type="text/javascript" src="../highlight/languages/javascript.min.js" async onload="hljs.highlightAll();"></script>
     </head>
     <body>
-
         <textarea name="to-copy-input" id="to-copy-text"></textarea>
         <strong class="rgb-color-names r">R</strong><input type="range" class="range" name="r-range" id="r-range" min="0" max="255" value="0"/>
         <input type="number" class="number" name="r-number" id="r-number" min="0" max="255" value="0"/><br />
@@ -31,7 +30,18 @@
         <pre><code class="language-javascript" id="highlighted-js"></code></pre>
         <pre><code class="language-tex" id="highlighted-tex"></code></pre>
         <pre><code class="language-py" id="highlighted-py"></code></pre>
-        
+        <div class="source-code-chooser tabs-container">
+            <div class="source-code-chooser choices-container">
+                <div class="source-code-chooser choice">
+                    <input type="radio" class="source-code-chooser radio-choice" name="source-code-chooser" id="scc-radio-pdf">
+                    <label id="scc-label-pdf" for="scc-pdf">PDF</label>
+                    <input type="radio" class="source-code-chooser radio-choice" name="source-code-chooser" id="scc-radio-latex">
+                    <label id="scc-label-latex" for="scc-latex">LaTex</label>
+                    <input type="radio" class="source-code-chooser radio-choice" name="source-code-chooser" id="scc-radio-py">
+                    <label id="scc-label-py" for="scc-py">Python</label>
+                </div>
+            </div>
+        </div>
         <script src="index.js" id="copy-hsl" type="text/javascript"></script>
     </body>
 </html>

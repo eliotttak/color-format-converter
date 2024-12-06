@@ -130,3 +130,8 @@ input[type="range"]::-moz-range-thumb {
     text-align: center;
 }
 
+
+
+.source-code-chooser.radio-choice {
+    display: none;
+}

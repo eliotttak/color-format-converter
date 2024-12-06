@@ -26,6 +26,10 @@ typedef struct {
     int b;
 } HSL;
 
+double mod(double a, double n) {
+    return ((a % n) + n) % n;
+}
+
 // Fonction pour convertir les valeurs RGB en HSL
 HSL rgb_to_hsl(double r, double g, double b, Maximums maximums) {
     HSL hsl;
@@ -66,15 +70,21 @@ HSL rgb_to_hsl(double r, double g, double b, Maximums maximums) {
     if (delta == 0) {
         h_ = 0;
     }
-    else if (c_max == r_) {
-        h_ = 60 * ((g_ - b_) / delta) % 6;
+    else if (cMax == b_) {
+        h_ = 60 * (((r_ - g_) / delta) + 4);
     }
-    else if (c_max == g_) {
-        h_ = 60 * ((b_ - r_) / delta) + 2;
+    else if (cMax == g_) {
+        h_ = 60 * (((b_ - r_) / delta) + 2);
     }
-    else if (c_max == b_) {
-        h_ = 60 * ((r_ - g_) / delta) + 4;
+    else if (cMax == r_) {
+        h_ = 60 * mod(((g_ - b_) / delta), 6);
     }
+
+    if (h_ < 0) {
+        h_ += 360;
+    } 
+
+    l_ = (cMax + cMin) / 2;
 
     if (delta == 0) {
         s_ = 0;
@@ -82,8 +92,6 @@ HSL rgb_to_hsl(double r, double g, double b, Maximums maximums) {
     else {
         s_ = delta / (1 - fabs(2 * l_ - 1));
     }
-
-    l_ = (c_max + c_min) / 2;
 
     hsl.h = (h_ / 360) * maximums.hsl.h;
     hsl.s = s_ * maximums.hsl.s;
