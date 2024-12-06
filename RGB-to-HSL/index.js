@@ -11,11 +11,15 @@ const lSpan = document.getElementById("hsl-l")
 const copyHslButton = document.getElementById("copy-hsl")
 const toCopyHidden = document.getElementById("to-copy-text")
 const isRoundedCheckbox = document.getElementById("checkboxIsRounded")
-const displayedPDF = document.getElementById("content-pdf-iframe")  
+const displayedPDF = document.getElementById("content-pdf-iframe") 
 const highLightedJS = document.getElementById("highlighted-js")
 const highLightedTEX = document.getElementById("highlighted-tex")
 const highLightedPY = document.getElementById("highlighted-py")
 const highLightedTS = document.getElementById("highlighted-ts")
+const contentHlJS = document.getElementById("content-hl-js")
+const contentHlTS = document.getElementById("content-hl-ts")
+const contentHlTEX = document.getElementById("content-hl-tex")
+const contentHlPY = document.getElementById("content-hl-py")
 const showPdfLabel = document.getElementById("scc-label-pdf")
 const showJSLabel = document.getElementById("scc-label-js")
 const showTSLabel = document.getElementById("scc-label-ts")
@@ -27,10 +31,10 @@ let lastHslResults = {}
 let head = document.getElementsByClassName("head")[0]
 
 displayedPDF.style.display = "block"
-highLightedJS.style.display = "none"
-highLightedPY.style.display = "none"
-highLightedTEX.style.display = "none"
-highLightedTS.style.display = "none"
+contentHlJS.style.display = "none"
+contentHlPY.style.display = "none"
+contentHlTEX.style.display = "none"
+contentHlTS.style.display = "none"
 
 async function pause(duration) {
   try {
@@ -202,41 +206,41 @@ document.addEventListener("mouseover", loadDocuments)
 showPdfLabel.addEventListener("click", evt => {
     console.log("pdf")
     displayedPDF.style.display = "block"
-    highLightedJS.style.display = "none"
-    highLightedPY.style.display = "none"
-    highLightedTEX.style.display = "none"
-    highLightedTS.style.display = "none"
+    contentHlJS.style.display = "none"
+    contentHlPY.style.display = "none"
+    contentHlTEX.style.display = "none"
+    contentHlTS.style.display = "none"
 })
 
 showJSLabel.addEventListener("click", evt => {
     displayedPDF.style.display = "none"
-    highLightedJS.style.display = "block"
-    highLightedPY.style.display = "none"
-    highLightedTEX.style.display = "none"
-    highLightedTS.style.display = "none"
+    contentHlJS.style.display = "block"
+    contentHlPY.style.display = "none"
+    contentHlTEX.style.display = "none"
+    contentHlTS.style.display = "none"
 })
 
 showPyLabel.addEventListener("click", evt => {
     displayedPDF.style.display = "none"
-    highLightedJS.style.display = "none"
-    highLightedPY.style.display = "block"
-    highLightedTEX.style.display = "none"
-    highLightedTS.style.display = "none"
+    contentHlJS.style.display = "none"
+    contentHlPY.style.display = "block"
+    contentHlTEX.style.display = "none"
+    contentHlTS.style.display = "none"
 })
 
 showLaTexLabel.addEventListener("click", evt => {
     displayedPDF.style.display = "none"
-    highLightedJS.style.display = "none"
-    highLightedPY.style.display = "none"
-    highLightedTEX.style.display = "block"
-    highLightedTS.style.display = "none"
+    contentHlJS.style.display = "none"
+    contentHlPY.style.display = "none"
+    contentHlTEX.style.display = "block"
+    contentHlTS.style.display = "none"
 })
 
 showTSLabel.addEventListener("click", evt => {
     displayedPDF.style.display = "none"
-    highLightedJS.style.display = "none"
-    highLightedPY.style.display = "none"
-    highLightedTEX.style.display = "none"
-    highLightedTS.style.display = "block    "
+    contentHlJS.style.display = "none"
+    contentHlPY.style.display = "none"
+    contentHlTEX.style.display = "none"
+    contentHlTS.style.display = "block    "
 })
 
