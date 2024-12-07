@@ -40,6 +40,9 @@
                     <label class="source-code-chooser label-choice" id="scc-label-latex" for="scc-radio-latex">LaTex</label>
                     <input type="radio" class="source-code-chooser radio-choice" name="source-code-chooser" id="scc-radio-py">
                     <label class="source-code-chooser label-choice" id="scc-label-py" for="scc-radio-py">Python</label>
+                    <input type="radio" class="source-code-chooser radio-choice" name="source-code-chooser" id="scc-radio-c">
+                    <label class="source-code-chooser label-choice" id="scc-label-c" for="scc-radio-c">C</label>
+                    
                 </div>
             </div>
         </div> <br />
@@ -60,6 +63,7 @@
                 <a href="main.ts" download>Download</a> <br />
                 <a href="main.min.ts" download>Download Minified</a> <br />
             </div>
+            <pre>w
                 <code class="language-typescript" id="highlighted-ts"></code>
             </pre>
         </div>
@@ -81,6 +85,16 @@
                 <code class="language-py" id="highlighted-py"></code>
             </pre>
         </div>
+        <div id="content-hl-c">
+            <div class="download-links-container">
+                <a href="main.c" download>Download</a> <br />
+                <a href="main.min.c" download>Download Minified</a> <br />
+            </div>
+            <pre>
+                <code class="language-c" id="highlighted-c"></code>
+            </pre>
+        </div>
+        
         <script src="index.js" id="copy-hsl" type="text/javascript"></script>
     </body>
 </html>
