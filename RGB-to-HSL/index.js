@@ -51,8 +51,7 @@ async function pause(duration) {
 async function ajax(url) {
     let toReturnValue
     let isReceived = false
-    let toReturn = ""
-    $.get("load", data => {
+    $.get(url, data => {
         isReceived = true
         toReturnValue =  data
     });
@@ -96,6 +95,7 @@ function changeBgC() {
 }
 
 changeBgC()
+
 
 rRange.on("input", evt => {
     console.log("changed")
@@ -236,6 +236,6 @@ showTSLabel.on("click", evt => {
     contentHlJS.css("display", "none")
     contentHlPY.css("display", "none")
     contentHlTEX.css("display", "none")
-    contentHlTS.style.display = "block    "
+    contentHlTS.css("display", "block")
 })
 
