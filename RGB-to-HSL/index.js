@@ -1,40 +1,40 @@
-const rRange = document.getElementById("r-range")
-const gRange = document.getElementById("g-range")
-const bRange = document.getElementById("b-range")
-const rNumber = document.getElementById("r-number")
-const gNumber = document.getElementById("g-number")
-const bNumber = document.getElementById("b-number")
-const colorDiv = document.getElementById("color")
-const hSpan = document.getElementById("hsl-h")
-const sSpan = document.getElementById("hsl-s")
-const lSpan = document.getElementById("hsl-l")
-const copyHslButton = document.getElementById("copy-hsl")
-const toCopyHidden = document.getElementById("to-copy-text")
-const isRoundedCheckbox = document.getElementById("checkboxIsRounded")
-const displayedPDF = document.getElementById("content-pdf-iframe") 
-const highLightedJS = document.getElementById("highlighted-js")
-const highLightedTEX = document.getElementById("highlighted-tex")
-const highLightedPY = document.getElementById("highlighted-py")
-const highLightedTS = document.getElementById("highlighted-ts")
-const contentHlJS = document.getElementById("content-hl-js")
-const contentHlTS = document.getElementById("content-hl-ts")
-const contentHlTEX = document.getElementById("content-hl-tex")
-const contentHlPY = document.getElementById("content-hl-py")
-const showPdfLabel = document.getElementById("scc-label-pdf")
-const showJSLabel = document.getElementById("scc-label-js")
-const showTSLabel = document.getElementById("scc-label-ts")
-const showPyLabel = document.getElementById("scc-label-py")
-const showLaTexLabel = document.getElementById("scc-label-latex")
+const rRange = $("#r-range")
+const gRange = $("#g-range")
+const bRange = $("#b-range")
+const rNumber = $("#r-number")
+const gNumber = $("#g-number")
+const bNumber = $("#b-number")
+const colorDiv = $("#color")
+const hSpan = $("#hsl-h")
+const sSpan = $("#hsl-s")
+const lSpan = $("#hsl-l")
+const copyHslButton = $("#copy-hsl")
+const toCopyHidden = $("#to-copy-text")
+const isRoundedCheckbox = $("#checkboxIsRounded")
+const displayedPDF = $("#content-pdf-iframe") 
+const highLightedJS = $("#highlighted-js")
+const highLightedTEX = $("#highlighted-tex")
+const highLightedPY = $("#highlighted-py")
+const highLightedTS = $("#highlighted-ts")
+const contentHlJS = $("#content-hl-js")
+const contentHlTS = $("#content-hl-ts")
+const contentHlTEX = $("#content-hl-tex")
+const contentHlPY = $("#content-hl-py")
+const showPdfLabel = $("#scc-label-pdf")
+const showJSLabel = $("#scc-label-js")
+const showTSLabel = $("#scc-label-ts")
+const showPyLabel = $("#scc-label-py")
+const showLaTexLabel = $("#scc-label-latex")
 
 
 let lastHslResults = {}
-let head = document.getElementsByClassName("head")[0]
+let head = $(".head")[0]
 
-displayedPDF.style.display = "block"
-contentHlJS.style.display = "none"
-contentHlPY.style.display = "none"
-contentHlTEX.style.display = "none"
-contentHlTS.style.display = "none"
+displayedPDF.css("display", "block")
+contentHlJS.css("display", "none")
+contentHlPY.css("display", "none")
+contentHlTEX.css("display", "none")
+contentHlTS.css("display", "none")
 
 async function pause(duration) {
   try {
@@ -52,13 +52,10 @@ async function ajax(url) {
     let toReturnValue
     let isReceived = false
     let toReturn = ""
-    const req = new XMLHttpRequest();
-    req.addEventListener("load", () => {
+    $.get("load", data => {
         isReceived = true
-        toReturnValue =  req.responseText
+        toReturnValue =  data
     });
-    req.open("GET", url);
-    req.send();
     while (true) {
         if (isReceived) {
             console.log("received")
@@ -77,170 +74,168 @@ function roundNumber(number, digits) {
 }
 
 function changeBgC() {
-    let r = rRange.value
-    let g = gRange.value
-    let b = bRange.value
+    let r = rRange.val()
+    let g = gRange.val()
+    let b = bRange.val()
 
-    rRange.style.backgroundImage = `linear-gradient(90deg, rgb(0, ${g}, ${b}) 0%, rgb(255, ${g}, ${b}) 100%)`
-    gRange.style.backgroundImage = `linear-gradient(90deg, rgb(${r}, 0, ${b}) 0%, rgb(${r}, 255, ${b}) 100%)`
-    bRange.style.backgroundImage = `linear-gradient(90deg, rgb(${r}, ${g}, 0) 0%, rgb(${r}, ${g}, 255) 100%)`
+    rRange.css("background-image", `linear-gradient(90deg, rgb(0, ${g}, ${b}) 0%, rgb(255, ${g}, ${b}) 100%)`)
+    gRange.css("background-image", `linear-gradient(90deg, rgb(${r}, 0, ${b}) 0%, rgb(${r}, 255, ${b}) 100%)`)
+    bRange.css("background-image", `linear-gradient(90deg, rgb(${r}, ${g}, 0) 0%, rgb(${r}, ${g}, 255) 100%)`)
     
-    colorDiv.style.backgroundColor = `rgb(${r}, ${g}, ${b})`
+    colorDiv.css("background-color", `rgb(${r}, ${g}, ${b})`)
     hslResult = rgbToHsl(r, g, b)
-    if (isRoundedCheckbox.checked) {
+    if (isRoundedCheckbox.is(":checked")) {
         hslResult.h = roundNumber(hslResult.h, 1)
         hslResult.s = roundNumber(hslResult.s, 1)
         hslResult.l = roundNumber(hslResult.l, 1)
     }
-    hSpan.innerHTML = hslResult.h
-    sSpan.innerHTML = hslResult.s
-    lSpan.innerHTML = hslResult.l
+    hSpan.html(hslResult.h)
+    sSpan.html(hslResult.s)
+    lSpan.html(hslResult.l)
     lastHslResults = hslResult
 }
 
 changeBgC()
 
-rRange.addEventListener("input", evt => {
+rRange.on("input", evt => {
     console.log("changed")
-    rNumber.value = rRange.value
+    rNumber.val(rRange.val())
     changeBgC()
 })
 
-gRange.addEventListener("input", evt => {
+gRange.on("input", evt => {
     console.log("changed")
-    gNumber.value = gRange.value
+    gNumber.val(gRange.val())
     changeBgC()
 })
 
-bRange.addEventListener("input", evt => {
+bRange.on("input", evt => {
     console.log("changed")
-    bNumber.value = bRange.value
+    bNumber.val(bRange.val())
     changeBgC()
 })
 
-rNumber.addEventListener("input", evt => {
+rNumber.on("input", evt => {
     console.log("changed")
-    rRange.value = rNumber.value
+    rRange.val(rNumber.val())
     changeBgC()
 })
 
-gNumber.addEventListener("input", evt => {
+gNumber.on("input", evt => {
     console.log("changed")
-    gRange.value = gNumber.value
+    gRange.val(gNumber.val())
     changeBgC()
 })
 
-bNumber.addEventListener("input", evt => {
+bNumber.on("input", evt => {
     console.log("changed")
-    bRange.value = bNumber.value
+    bRange.val(bNumber.val())
     changeBgC()
 })
 
-copyHslButton.addEventListener("click", evt => {
+copyHslButton.on("click", evt => {
     /* Copy the text */
-    toCopyHidden.innerHTML = `hsl(${lastHslResults.h}deg ${lastHslResults.s}% ${lastHslResults.l}%)`
+    toCopyHidden.html(`hsl(${lastHslResults.h}deg ${lastHslResults.s}% ${lastHslResults.l}%)`)
     toCopyHidden.select()
-    toCopyHidden.setSelectionRange(0, 99999);
-    navigator.clipboard.writeText(toCopyHidden.value);
+    toCopyHidden.get(0).setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(toCopyHidden.val());
 
     /* Show "Copié !" with a green background */
-    copyHslButton.innerHTML = "Copié !"
-    copyHslButton.style.backgroundColor = "#00B13B"
+    copyHslButton.html("Copié !")
+    copyHslButton.css("background-color", "#00B13B")
     setTimeout(() => {
-        copyHslButton.innerHTML = "Copier le code HSL"
-        copyHslButton.style.backgroundColor = "#CCCCCC"
+        copyHslButton.html("Copier le code HSL")
+        copyHslButton.css("background-color", "#CCCCCC")
     }, 2000)
 })
 
-copyHslButton.addEventListener("mouseover", evt => {
-    const bgColor = getComputedStyle(copyHslButton).getPropertyValue("background-color")
-    copyHslButton.style.backgroundColor = (
+copyHslButton.on("mouseover", evt => {
+    const bgColor = copyHslButton.css("background-color")
+    copyHslButton.css("background-color", (
         bgColor == "rgb(204, 204, 204)" ?
         "#BBBBBB" :
         (
             bgColor == "rgb(0, 177, 59)" ?
             "#00A02A" :
-            copyHslButton.backgroundColor
+            copyHslButton.css("background-color")
         )
         
-    )
+    ))
 })
 
-copyHslButton.addEventListener("mouseout", evt => {
-    const bgColor = getComputedStyle(copyHslButton).getPropertyValue("background-color")
-    copyHslButton.style.backgroundColor = (
+copyHslButton.on("mouseout", evt => {
+    const bgColor = copyHslButton.css("background-color")
+    copyHslButton.css("backgroundColor", (
         bgColor == "rgb(187, 187, 187)" ?
         "#CCCCCC" :
         (
             bgColor == "rgb(0, 160, 42)" ?
             "#00B13B" :
-            copyHslButton.backgroundColor
+            copyHslButton.css("background-color")
         )
         
-    )
+    ))
 })
 
-isRoundedCheckbox.addEventListener("click", () => {
+isRoundedCheckbox.on("click", () => {
     changeBgC()
 })
 
 
 async function loadDocuments(evt) {
-    document.removeEventListener("mouseover", loadDocuments)
-    highLightedJS.innerHTML = await ajax("main.js")
-    highLightedJS.setAttribute("data-highlighted", "")
-    highLightedTEX.innerHTML = await ajax("main.tex")
-    highLightedTEX.setAttribute("data-highlighted", "")
-    highLightedPY.innerHTML = await ajax("main.py")
-    highLightedPY.setAttribute("data-highlighted", "")
-    highLightedTS.innerHTML = await ajax("main.ts")
-    highLightedTS.setAttribute("data-highlighted", "")
-    
-    
+    $(document).off("mouseover")
+    highLightedJS.html(await ajax("main.js"))
+    highLightedJS.attr("data-highlighted", "")
+    highLightedTEX.html(await ajax("main.tex"))
+    highLightedTEX.attr("data-highlighted", "")
+    highLightedPY.html(await ajax("main.py"))
+    highLightedPY.attr("data-highlighted", "")
+    highLightedTS.html(await ajax("main.ts"))
+    highLightedTS.attr("data-highlighted", "")
     console.log("loaded")
     hljs.highlightAll()
 }
 
-document.addEventListener("mouseover", loadDocuments)
+$(document).on("mouseover", loadDocuments)
 
-showPdfLabel.addEventListener("click", evt => {
+showPdfLabel.on("click", evt => {
     console.log("pdf")
-    displayedPDF.style.display = "block"
-    contentHlJS.style.display = "none"
-    contentHlPY.style.display = "none"
-    contentHlTEX.style.display = "none"
-    contentHlTS.style.display = "none"
+    displayedPDF.css("display", "block")
+    contentHlJS.css("display", "none")
+    contentHlPY.css("display", "none")
+    contentHlTEX.css("display", "none")
+    contentHlTS.css("display", "none")
 })
 
-showJSLabel.addEventListener("click", evt => {
-    displayedPDF.style.display = "none"
-    contentHlJS.style.display = "block"
-    contentHlPY.style.display = "none"
-    contentHlTEX.style.display = "none"
-    contentHlTS.style.display = "none"
+showJSLabel.on("click", evt => {
+    displayedPDF.css("display", "none")
+    contentHlJS.css("display", "block")
+    contentHlPY.css("display", "none")
+    contentHlTEX.css("display", "none")
+    contentHlTS.css("display", "none")
 })
 
-showPyLabel.addEventListener("click", evt => {
-    displayedPDF.style.display = "none"
-    contentHlJS.style.display = "none"
-    contentHlPY.style.display = "block"
-    contentHlTEX.style.display = "none"
-    contentHlTS.style.display = "none"
+showPyLabel.on("click", evt => {
+    displayedPDF.css("display", "none")
+    contentHlJS.css("display", "none")
+    contentHlPY.css("display", "block")
+    contentHlTEX.css("display", "none")
+    contentHlTS.css("display", "none")
 })
 
-showLaTexLabel.addEventListener("click", evt => {
-    displayedPDF.style.display = "none"
-    contentHlJS.style.display = "none"
-    contentHlPY.style.display = "none"
-    contentHlTEX.style.display = "block"
-    contentHlTS.style.display = "none"
+showLaTexLabel.on("click", evt => {
+    displayedPDF.css("display", "none")
+    contentHlJS.css("display", "none")
+    contentHlPY.css("display", "none")
+    contentHlTEX.css("display", "block")
+    contentHlTS.css("display", "none")
 })
 
-showTSLabel.addEventListener("click", evt => {
-    displayedPDF.style.display = "none"
-    contentHlJS.style.display = "none"
-    contentHlPY.style.display = "none"
-    contentHlTEX.style.display = "none"
+showTSLabel.on("click", evt => {
+    displayedPDF.css("display", "none")
+    contentHlJS.css("display", "none")
+    contentHlPY.css("display", "none")
+    contentHlTEX.css("display", "none")
     contentHlTS.style.display = "block    "
 })
 
