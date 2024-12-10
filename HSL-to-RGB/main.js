@@ -1,4 +1,4 @@
-function hslToRgb(h, s, l, maximums) {
+function hslToRgb(h, s, l, maximums = {}) {
     /*
     The function hslToRgb() convert HSL colors in RGB. You can choose the value ranges in the fourth argument.
     How to use :

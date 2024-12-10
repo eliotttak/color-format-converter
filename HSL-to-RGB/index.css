@@ -35,20 +35,8 @@ input[type="range"]::-moz-range-thumb {
     height: 150px;
 }
 
-.rgb-color-names {
+.hsl-color-names {
     font-size: xx-large;
-}
-
-.rgb-color-names.r {
-    color: #FF0000;
-}
-
-.rgb-color-names.g {
-    color: #00FF00;
-}
-
-.rgb-color-names.b {
-    color: #0000FF;
 }
 
 #to-copy-text{
@@ -111,7 +99,7 @@ input[type="range"]::-moz-range-thumb {
     cursor: pointer;
 }
 
-#copy-hsl {
+#copy-rgb {
     appearance: none;
     border: 0.5px solid;
     background-color: #CCCCCC;
