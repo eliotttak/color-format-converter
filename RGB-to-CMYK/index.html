@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Convertisseur de RGB vers CMYK</title>
+        <meta charset="utf8">
+        <script type="text/javascript" src="main.min.js"></script>
+        <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="../highlight/styles/vs2015.min.css">
+        <script src="../highlight/highlight.min.js" type="text/javascript"></script>
+        <script src="../jquery/jquery-3.7.1.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="../highlight/languages/javascript.min.js" onload="hljs.highlightAll();"></script>
+    </head>
+    <body>
+        <textarea name="to-copy-input" id="to-copy-text"></textarea>
+        <strong class="rgb-color-names r">R</strong><input type="range" class="range" name="r-range" id="r-range" min="0" max="255" value="0"/>
+        <input type="number" class="number" name="r-number" id="r-number" min="0" max="255" value="0"/><br />
+        <strong class="rgb-color-names g">G</strong><input type="range" class="range" name="g-range" id="g-range" min="0" max="255" value="0"/>
+        <input type="number" class="number" name="g-number" id="g-number" min="0" max="255" value="0"/><br />
+        <strong class="rgb-color-names b">B</strong><input type="range" class="range" name="b-range" id="b-range" min="0" max="255" value="0"/>
+        <input type="number" class="number" name="b-number" id="b-number" min="0" max="255" value="0"/><br />
+        <div id="color"></div> <br />
+
+        <label id="isRounded">
+            <input type="checkbox" checked id="checkboxIsRounded"/>
+            <span></span>
+        </label><label id="labelIsRounded" for="checkboxIsRounded"> Arrondir le résultat</label><br />
+        <h1>cmyk(<span id="cmyk-c"></span>, <span id="cmyk-m"></span>, <span id="cmyk-y"></span>, <span id="cmyk-k"></span>)</h1>
+        <button type="button" id="copy-cmyk">Copier le code CMYK</button><br /><br />
+        <H2>Comment avons-nous fait ça ?</H2>
+        <div class="source-code-chooser tabs-container">
+            <div class="source-code-chooser choices-container">
+                <div class="source-code-chooser choice">
+                    <input type="radio" class="source-code-chooser radio-choice" name="source-code-chooser" id="scc-radio-pdf" checked="true">
+                    <label class="source-code-chooser label-choice" id="scc-label-pdf" for="scc-radio-pdf">PDF</label>
+                    <input type="radio" class="source-code-chooser radio-choice" name="source-code-chooser" id="scc-radio-js">
+                    <label class="source-code-chooser label-choice" id="scc-label-js" for="scc-radio-js">JavaScript</label>
+                    <input type="radio" class="source-code-chooser radio-choice" name="source-code-chooser" id="scc-radio-ts">
+                    <label class="source-code-chooser label-choice" id="scc-label-ts" for="scc-radio-ts">TypeScript</label>
+                    <input type="radio" class="source-code-chooser radio-choice" name="source-code-chooser" id="scc-radio-latex">
+                    <label class="source-code-chooser label-choice" id="scc-label-latex" for="scc-radio-latex">LaTex</label>
+                    <input type="radio" class="source-code-chooser radio-choice" name="source-code-chooser" id="scc-radio-py">
+                    <label class="source-code-chooser label-choice" id="scc-label-py" for="scc-radio-py">Python</label>
+                    <input type="radio" class="source-code-chooser radio-choice" name="source-code-chooser" id="scc-radio-c">
+                    <label class="source-code-chooser label-choice" id="scc-label-c" for="scc-radio-c">C</label>
+                    
+                </div>
+            </div>
+        </div> <br />
+        <div id="content-pdf-iframe">
+            <iframe src="main.pdf" id="pdf-iframe">Désolé, votre navigateur ne prend pas en charge les balises &lt;iframe&gt;</iframe>
+        </div>
+        <div id="content-hl-js">
+            <div class="download-links-container">
+                <a href="main.js" download>Download</a> <br />
+                <a href="main.min.js" download>Download Minified</a> <br />
+            </div>
+            <pre>
+                <code class="language-javascript" id="highlighted-js"></code>
+            </pre>
+        </div>
+        <div id="content-hl-ts">
+            <div class="download-links-container">
+                <a href="main.ts" download>Download</a> <br />
+                <a href="main.min.ts" download>Download Minified</a> <br />
+            </div>
+            <pre>w
+                <code class="language-typescript" id="highlighted-ts"></code>
+            </pre>
+        </div>
+        <div id="content-hl-tex">
+            <div class="download-links-container">
+                <a href="main.tex" download>Download</a> <br />
+                <a href="main.min.tex" download>Download Minified</a> <br />
+            </div>
+            <pre>
+                <code class="language-tex" id="highlighted-tex"></code>
+            </pre>
+        </div>
+        <div id="content-hl-py">
+            <div class="download-links-container">
+                <a href="main.py" download>Download</a> <br />
+                <a href="main.min.py" download>Download Minified</a> <br />
+            </div>
+            <pre>
+                <code class="language-py" id="highlighted-py"></code>
+            </pre>
+        </div>
+        <div id="content-hl-c">
+            <div class="download-links-container">
+                <a href="main.c" download>Download</a> <br />
+                <a href="main.min.c" download>Download Minified</a> <br />
+            </div>
+            <pre>
+                <code class="language-c" id="highlighted-c"></code>
+            </pre>
+        </div>
+        
+        <script src="index.js" type="text/javascript"></script>
+    </body>
+</html>
