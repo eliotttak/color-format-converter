@@ -44,7 +44,7 @@ def rgb_to_cmyk(r, g, b, maximumm):
         return None
     
     k_ = 1 - max(r_, g_, b_)
-    c_ = (1 - r_ - k_) / 1 - k_
+    c_ = (1 - r_ - k_) / (1 - k_)
     m_ = (1 - g_ - k_) / (1 - k_)
     y_ = (1 - b_ - k_) / (1 - k_)
     
