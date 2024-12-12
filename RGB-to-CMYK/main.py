@@ -54,5 +54,3 @@ def rgb_to_cmyk(r, g, b, maximumm):
         "y": y_ * maximumm["cmyk"]["y"],
         "k": k_ * maximumm["cmyk"]["k"]
     }
-    
-    
