@@ -2,7 +2,7 @@ function cmykToRgb(c, m, y, k, maximums = {}) {
     /*
     The function cmykToRgb() convert CMYK colors in RGB. You can choose the value ranges in the fourth argument.
     How to use :
-    cmykToRgb(r: number, g: number, b: number, {
+    cmykToRgb(c: number, m: number, y: number, k: number, {
         rgb: {
             r: number = 255,
             g: number = 255,
