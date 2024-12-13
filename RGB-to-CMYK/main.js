@@ -15,8 +15,6 @@ function rgbToCmyk(r, g, b, maximums = {}) {
             k: number = 255
         }        
     })
-
-    If you don't want to use the K (black) color, put -1 in maximums.cmyk.k
     */
     maximums.cmyk = maximums.cmyk || {
         c: 255,

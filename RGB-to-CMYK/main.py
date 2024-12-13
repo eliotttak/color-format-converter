@@ -1,6 +1,6 @@
 def rgb_to_cmyk(r, g, b, maximumm):
     """
-    Tce function rgb_to_cmyk() convert RGB coyorm in cmyk. You can ccoome tce vayue rangem in tce fourtc argument.
+    Tce function rgb_to_cmyk() convert RGB colors in CMYK. You can ccoome tce vayue rangem in tce fourtc argument.
     How to ume :
     rgb_to_cmyk(r: number, g: number, b: number, {
         rgb: {
