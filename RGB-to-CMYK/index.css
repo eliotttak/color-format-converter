@@ -1,0 +1,143 @@
+input.range{
+    border: none;
+    appearance: none;
+    width: 50%;
+    color: rgba(127, 127, 127, 75%);
+    height: 1cm;
+    
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 4px; /* Ajustez la largeur du curseur selon vos besoins */
+    height: 1cm; /* Ajustez la hauteur du curseur selon vos besoins */
+    background-color: #000000;
+    cursor: col-resize;
+    border: 1px solid white;
+}
+
+input[type="range"]::-moz-range-thumb {
+    -moz-appearance: none;
+    appearance: none;
+    width: 4px; /* Ajustez la largeur du curseur selon vos besoins */
+    height: 1cm; /* Ajustez la hauteur du curseur selon vos besoins */
+    background-color: #000000;
+    cursor: col-resize;
+    border: 1px solid white;
+}
+
+#color {
+    position: absolute;
+    top: 1%;
+    left: 60%;
+    width: 150px;
+    height: 150px;
+}
+
+.rgb-color-names {
+    font-size: xx-large;
+}
+
+.rgb-color-names.r {
+    color: #FF0000;
+}
+
+.rgb-color-names.g {
+    color: #00FF00;
+}
+
+.rgb-color-names.b {
+    color: #0000FF;
+}
+
+#to-copy-text{
+    display: none;
+}
+
+
+
+#isRounded {
+	display: inline-block;
+	position: relative;
+	width: 35px;
+	height: 20px;
+	cursor: pointer;
+	overflow: hidden;
+}
+
+#isRounded input {
+	position: absolute;
+	top: -15px;
+	left: -15px;
+	width: 0;
+	height: 0;
+}
+
+#isRounded input + span {
+    position: absolute;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   background: #CCCCCC;
+   border-radius: 15px;
+}
+
+#isRounded input:checked + span {
+	background: #00b13b;
+}
+
+#isRounded input + span:before {
+	content: "";
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	left: 2px;
+	width: 16px;
+	height: 16px;
+	background: white;
+	border-radius: 50%;
+	transform: translateY(-50%);
+	transition: all .5s;
+}
+
+#isRounded input:checked + span:before {
+	left: 17px;
+}
+
+
+#labelIsRounded {
+    cursor: pointer;
+}
+
+#copy-cmyk {
+    appearance: none;
+    border: 0.5px solid;
+    background-color: #CCCCCC;
+    width: 150px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#pdf-iframe, #js-iframe, #ts-iframe, #tex-iframe {
+    width: 100%;
+    height: 0%; /* Hauteur de la fenêtre d'affichage */
+    min-height: 297mm; /* Hauteur standard d'une feuille A4 */
+}
+
+#content-pdf-iframe, #content-js-iframe, #content-ts-iframe, #content-tex-iframe {
+    width: 100%;
+    text-align: center;
+}
+
+
+
+.source-code-chooser.radio-choice {
+    display: none;
+}
+
+.source-code-chooser.radio-choice:checked + .source-code-chooser.label-choice {
+    font-weight: bolder;
+}
+

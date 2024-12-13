@@ -48,11 +48,15 @@ function rgbToCmyk(r, g, b, maximums = {}) {
     }
 
     const k_ = 1 - Math.max(r_, g_, b_)
-    const c_ = (1 - r_ - k_) / (1 - k_)
-    const m_ = (1 - g_ - k_) / (1 - k_)
-    const y_ = (1 - b_ - k_) / (1 - k_)
+    let c_ = (1 - r_ - k_) / (1 - k_)
+    let m_ = (1 - g_ - k_) / (1 - k_)
+    let y_ = (1 - b_ - k_) / (1 - k_)
     
+    c_ = isNaN(c_) ? 0 : c_
+    m_ = isNaN(m_) ? 0 : m_
+    y_ = isNaN(y_) ? 0 : y_
 
+    console.log(c_, m_, y_, k_)
     let result = {
         c: c_ * maximums.cmyk.c,
         m: m_ * maximums.cmyk.m,
