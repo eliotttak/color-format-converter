@@ -82,6 +82,9 @@ const server = http.createServer((request, result) => { // création du server
                 case "c":
                     type = "application/x-c"
                     break
+                case "woff2":
+                    type = "font/woff2"
+                    break
             }
             let disp = {
                 status : "OK",

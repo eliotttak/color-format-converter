@@ -1,3 +1,13 @@
+.italic {
+    font-style: italic;
+}
+
+#hsl_expl, #rgb_expl {
+    text-align: left;
+    position: static;
+    width: 50%;
+}
+
 input.range{
     border: none;
     appearance: none;

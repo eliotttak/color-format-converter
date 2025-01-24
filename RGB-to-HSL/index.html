@@ -26,6 +26,47 @@
         </label><label id="labelIsRounded" for="checkboxIsRounded"> Arrondir le résultat</label><br />
         <h1><span id="hsl-h"></span>° <span id="hsl-s"></span>% <span id="hsl-l"></span>%</h1>
         <button type="button" id="copy-hsl">Copier le code HSL</button><br /><br />
+        <h2>Explications sur les formats de couleurs...</h2>
+        <table>
+            <tr>
+                <td id="rgb_expl">
+                    Le RGB est un format de couleurs très utilisé en informatique qui utilise les proportions des 3 couleurs primaires (rouge, vert et bleu) pour coder la couleur finale. Il est très pratique car ce sont justement ces trois couleurs qu'affichent les écrans et perçoivent les appareils photographiques et même l'œil.<br />
+                    Il comprend :
+                    <ul>
+                        <li>
+                            Le <span class="italic">Rouge</span> (en anglais, "Red"), est exprimé de 0 à 255, et définit la quantité de rouge dans la couleur finale. Une valeur de 0 signifie pas de rouge, alors qu'une valeur de 255 signifie le maximum de rouge.
+                        </li>
+                        <li>
+                            Le <span class="italic">Vert</span> (en anglais, "Green"), est exprimé de 0 à 255, et définit la quantité de vert dans la couleur finale. Une valeur de 0 signifie pas de vert, alors qu'une valeur de 255 signifie le maximum de vert.
+                        </li>
+                        <li>
+                            Le <span class="italic">Bleu</span> (en anglais, "Blue"), est exprimé de 0 à 255, et définit la quantité de bleu dans la couleur finale. Une valeur de 0 signifie pas de bleu, alors qu'une valeur de 255 signifie le maximum de bleu.
+                        </li>
+                    </ul>
+                    Avec des valeurs entières, on peut obtenir 256 × 256 × 256 = 16 777 216 couleurs différentes, alors que l'œil humain n'en perçoit qu'environ 300 000.<br />
+                    <a href="https://fr.wikipedia.org/wiki/Rouge-vert-bleu" target="_blank" rel="noopener noreferrer">Page Wikipédia en français <span class="fa-regular fa-window-restore"></span></a><br />
+                    <a href="https://en.wikipedia.org/wiki/RGB_color_model" target="_blank" rel="noopener noreferrer">English Wikipedia page <span class="fa-regular fa-window-restore"></span></a>
+                </td>
+                <td id="hsl_expl">
+                    Le HSL est un format de couleurs qui permet d'un peu mieux faire comprendre la couleur à l'utilisateur lambda, puisqu'on utilise la <span class="italic">teinte</span> qui définit la couleur (rouge, jaune, verte, <span class="italic">cyan</span>, etc.), la <span class="italic">saturation</span>, qui définit à quel point la couleur est terne ou colorée, et la <span class="italic">luminosité</span>, qui définit la distance de cette couleur au noir (et au blanc). <br />
+                    Il comprend :
+                    <ul>
+                        <li>
+                            La <span class="italic">Teinte</span> (en anglais, "Hue"), exprimée en degrés (°), de 0° à 359°, définit la couleur de cette manière : 0° et 360° sont rouges, 60° est jaune, 120° est vert, 180° est <span class="italic">cyan</span> (un mélange de bleu et de vert utilsé en imprimerie), 240° est bleu, et 300° est <span class="italic">magenta</span> (un genre de mauve utilisé lui aussi en imprimerie.)
+                        </li>
+                        <li>
+                            La <span class="italic">Saturation</span> (le même mot en anglais), exprimée en pourcents (%), de 0 % à 100 %, définit à quel point la couleur est grise et terne, ou au contraire, colorée. Une valeur de 0 % correspond à une couleur terne (blanc, gris ou noir), alors qu'une valeur de 100 % correspond à une teinte très vive.
+                        </li>
+                        <li>
+                            La <span class="italic">Luminosité</span> (en anglais, "Lightness"), exprimée en en pourcents (%), de 0 % à 100 %, définit la distance de la couleur au blanc ou au noir. Une valeur de 0 % correspond au noir, une valeur de 100 % correspond au blanc, et une valeur de 50 % correspond à la couleur classique (par ex. rouge vif)
+                        </li>
+                    </ul>
+                    Avec des valeurs entières, on peut obtenir 360 × 101 × 101 = 3 672 360 couleurs différentes, alors que l'œil humain n'en perçoit qu'environ 300 000.<br />
+                    <a href="https://fr.wikipedia.org/wiki/Teinte_saturation_luminosité" target="_blank" rel="noopener noreferrer">Page Wikipédia en français <span class="fa-regular fa-window-restore"></span></a><br />
+                    <a href="https://en.wikipedia.org/wiki/HSL_and_HSV" target="_blank" rel="noopener noreferrer">English Wikipedia page <span class="fa-regular fa-window-restore"></span></a>
+                </td>
+            </tr>
+        </table>
         <H2>Comment avons-nous fait ça ?</H2>
         <div class="source-code-chooser tabs-container">
             <div class="source-code-chooser choices-container">
@@ -42,7 +83,6 @@
                     <label class="source-code-chooser label-choice" id="scc-label-py" for="scc-radio-py">Python</label>
                     <input type="radio" class="source-code-chooser radio-choice" name="source-code-chooser" id="scc-radio-c">
                     <label class="source-code-chooser label-choice" id="scc-label-c" for="scc-radio-c">C</label>
-                    
                 </div>
             </div>
         </div> <br />

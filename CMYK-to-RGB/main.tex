@@ -1,0 +1,64 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{mathtools}
+\usepackage{amsmath}
+
+\title{RGB to CMYK}
+\author{Eliott TAKVORIAN}
+\date{November 2024}
+
+\begin{document}
+    $R$ is the part of Red in the color to convert.
+
+    $G$ is the part of Green in the color to convert.
+
+    $B$ is the part of Blue in the color to convert.
+
+    $M_{axR}$ is the possible maximum of $R$ (generally 100 or 255)
+
+    $M_{axG}$ is the possible maximum of $G$ (generally 100 or 255)
+
+    $M_{axR}$ is the possible maximum of $R$ (generally 100 or 255)\\
+
+    $R'$, $G'$, $B'$, $C'$, $M'$, $Y'$ and $K'$ are internal variables that mustn't be displayed.\\
+
+    $C$ is the part of Cyan in the converted color.
+
+    $M$ is the part of Magenta in the converted color.
+
+    $Y$ is the part of Yellow in the converted color.
+
+    $K$ is the part of blacK in the converted color.
+
+    $M_{axC}$ is the possible maximum of $C$ (generally 100, 1 or 255).
+
+    $M_{axM}$ is the possible maximum of $M$ (generally 100, 1 or 255).
+
+    $M_{axY}$ is the possible maximum of $Y$ (generally 100, 1 or 255).
+
+    $M_{axK}$ is the possible maximum of $K$ (generally 100, 1 or 255).\\
+
+    $R'=\frac{R}{M_{axR}}$\\
+
+    $G'=\frac{G}{M_{axG}}$\\
+
+    $B'=\frac{B}{M_{axB}}$\\\\
+
+    $K'=1-\max(R', G', B')$\\
+
+    $C'=\frac{1-R'-K'}{1-K'}$\\
+
+    $M'=\frac{1-G'-K'}{1-K'}$\\
+
+    $Y'=\frac{1-B'-K'}{1-K'}$\\\\
+
+    $C=C'\times M_{axC}$\\
+
+    $M=M'\times M_{axM}$\\
+
+    $Y=Y'\times M_{axY}$\\
+
+    $K=K'\times M_{axK}$\\
+
+    
+\end{document}
