@@ -7,15 +7,22 @@ const server = http.createServer((request, result) => { // création du server
     name = __dirname + (name)
     let segments = name.split(/\//)
     let lastSegment = segments[segments.length - 1]
-    if (! /\./.test(lastSegment)) { // si la requete est un dossier
-        name = /\/$/.test(name) ? name + "index.html" : name + "/index.html" // ajout d'un "index.html"
+    console.log(lastSegment)
+    if (! /\./.test(lastSegment)) { // sans extention donc est peut-être un dossier (mais peut-être aussi un exécutable Linux)
+        console.log("There is not point in '" + lastSegment + "'")
+        // On teste si '{requete}/index.html' existe
+        if (fs.existsSync(/\/$/.test(name) ? name + indexedDB.html : name + "/index.html")) {
+            name = /\/$/.test(name) ? name + "index.html" : name + "/index.html" // ajout d'un "index.html"
+        }
+        // Sinon, on la garde telle qu'elle
     }
+    console.log(name)
     expens =  name.split(/\./)[name.split(/\./).length-1].toLowerCase()
     fs.readFile(name, expens == "js" || expens == "html" || expens == "htm" || expens == "css" || expens == "svg" ? {encoding : "utf-8"} : {}, (err, data) => {
         if (err) {
             let disp = {
                 status : "ERROR",
-                url : name.replaceAll("C:\\Users\\takvoriane", ""),
+                url : name.replaceAll("C:\\Users\\takvoriane", "").replaceAll("/home/elapp", ""),
                 code : 404,
                 datetime : new Date().toString(),
                 //send : "./404-error.html", 
@@ -85,6 +92,9 @@ const server = http.createServer((request, result) => { // création du server
                 case "woff2":
                     type = "font/woff2"
                     break
+                default:
+                    // It's not very correct but I will considerating that the other files are Linux executables
+                    type = "application/x-executable"
             }
             let disp = {
                 status : "OK",

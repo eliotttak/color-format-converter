@@ -21,13 +21,13 @@ typedef struct {
 
 // Structure pour les couleurs HSL
 typedef struct {
-    int r;
-    int g;
-    int b;
+    int h;
+    int s;
+    int l;
 } HSL;
 
 double mod(double a, double n) {
-    return ((a % n) + n) % n;
+    return (a - n * (a / n));
 }
 
 // Fonction pour convertir les valeurs RGB en HSL
@@ -39,7 +39,10 @@ HSL rgb_to_hsl(double r, double g, double b, Maximums maximums) {
     double b_ = b / maximums.rgb.b;
     
     if (r_ < 0 || r_ > 1 || g_ < 0 || g_ > 1 || b_ < 0 || b_ > 1) {
-        return {-1, -1, -1};
+        hsl.h = -1;
+        hsl.s = -1;
+        hsl.l = -1;
+        return hsl;
     }
 
     double c_max = (r_ > g_) ? 
@@ -70,13 +73,13 @@ HSL rgb_to_hsl(double r, double g, double b, Maximums maximums) {
     if (delta == 0) {
         h_ = 0;
     }
-    else if (cMax == b_) {
+    else if (c_max == b_) {
         h_ = 60 * (((r_ - g_) / delta) + 4);
     }
-    else if (cMax == g_) {
+    else if (c_max == g_) {
         h_ = 60 * (((b_ - r_) / delta) + 2);
     }
-    else if (cMax == r_) {
+    else if (c_max == r_) {
         h_ = 60 * mod(((g_ - b_) / delta), 6);
     }
 
@@ -84,7 +87,7 @@ HSL rgb_to_hsl(double r, double g, double b, Maximums maximums) {
         h_ += 360;
     } 
 
-    l_ = (cMax + cMin) / 2;
+    l_ = (c_max + c_min) / 2;
 
     if (delta == 0) {
         s_ = 0;
@@ -98,4 +101,31 @@ HSL rgb_to_hsl(double r, double g, double b, Maximums maximums) {
     hsl.l = l_ * maximums.hsl.l;
 
     return hsl;
+}
+
+void main (void) {
+    int r;
+    printf("Enter the R value : ");
+    scanf("%d", &r);
+    int g;
+    printf("Enter the G value : ");
+    scanf("%d", &g);
+    int b;
+    printf("Enter the B value : ");
+    scanf("%d", &b);
+    RGB_Max rgb_max = {
+        r: 255,
+        g: 255,
+        b: 255
+    };
+    HSL_Max hsl_max = {
+        h: 360,
+        s: 100,
+        l: 100
+    };
+    Maximums maximums = {
+        rgb: rgb_max,
+        hsl: hsl_max
+    };
+    printf("rgb(%d, %d, %d) = hsl(%ddeg %d%% %d%%)\n", r, g, b, rgb_to_hsl(r, g, b, maximums).h, rgb_to_hsl(r, g, b, maximums).s, rgb_to_hsl(r, g, b, maximums).l);
 }
