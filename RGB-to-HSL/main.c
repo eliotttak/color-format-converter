@@ -33,11 +33,11 @@ double mod(double a, double n) {
 // Fonction pour convertir les valeurs RGB en HSL
 HSL rgb_to_hsl(double r, double g, double b, Maximums maximums) {
     HSL hsl;
-    
+
     double r_ = r / maximums.rgb.r;
     double g_ = g / maximums.rgb.g;
     double b_ = b / maximums.rgb.b;
-    
+
     if (r_ < 0 || r_ > 1 || g_ < 0 || g_ > 1 || b_ < 0 || b_ > 1) {
         hsl.h = -1;
         hsl.s = -1;
@@ -45,23 +45,23 @@ HSL rgb_to_hsl(double r, double g, double b, Maximums maximums) {
         return hsl;
     }
 
-    double c_max = (r_ > g_) ? 
+    double c_max = (r_ > g_) ?
                     (
-                        (r_ > b_) ? 
+                        (r_ > b_) ?
                         r_ :
                         b_
-                    ) : 
+                    ) :
                     (
                         (g_ > b_) ?
                         g_ :
                         b_
                     );
-    double c_min = (r_ < g_) ? 
+    double c_min = (r_ < g_) ?
                     (
-                        (r_ < b_) ? 
+                        (r_ < b_) ?
                         r_ :
                         b_
-                    ) : 
+                    ) :
                     (
                         (g_ < b_) ?
                         g_ :
@@ -85,7 +85,7 @@ HSL rgb_to_hsl(double r, double g, double b, Maximums maximums) {
 
     if (h_ < 0) {
         h_ += 360;
-    } 
+    }
 
     l_ = (c_max + c_min) / 2;
 
@@ -128,4 +128,10 @@ void main (void) {
         hsl: hsl_max
     };
     printf("rgb(%d, %d, %d) = hsl(%ddeg %d%% %d%%)\n", r, g, b, rgb_to_hsl(r, g, b, maximums).h, rgb_to_hsl(r, g, b, maximums).s, rgb_to_hsl(r, g, b, maximums).l);
+    //char *close = "A";
+    //printf("Appuyez sur Entrée pour terminer...");
+    //while (close != "") {
+    //    scanf("%s", &close);
+    //}
+    //return;
 }
