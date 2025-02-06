@@ -129,7 +129,7 @@ void main (void) {
     };
     printf("rgb(%d, %d, %d) = hsl(%ddeg %d%% %d%%)\n", r, g, b, rgb_to_hsl(r, g, b, maximums).h, rgb_to_hsl(r, g, b, maximums).s, rgb_to_hsl(r, g, b, maximums).l);
     //char *close = "A";
-    //printf("Appuyez sur Entrée pour terminer...");
+    //printf("Appuyez sur EntrÃ©e pour terminer...");
     //while (close != "") {
     //    scanf("%s", &close);
     //}

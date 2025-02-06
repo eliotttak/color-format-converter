@@ -11,7 +11,7 @@ const server = http.createServer((request, result) => { // création du server
     if (! /\./.test(lastSegment)) { // sans extention donc est peut-être un dossier (mais peut-être aussi un exécutable Linux)
         console.log("There is not point in '" + lastSegment + "'")
         // On teste si '{requete}/index.html' existe
-        if (fs.existsSync(/\/$/.test(name) ? name + indexedDB.html : name + "/index.html")) {
+        if (fs.existsSync(/\/$/.test(name) ? name + "index.html" : name + "/index.html")) {
             name = /\/$/.test(name) ? name + "index.html" : name + "/index.html" // ajout d'un "index.html"
         }
         // Sinon, on la garde telle qu'elle
