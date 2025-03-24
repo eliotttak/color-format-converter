@@ -103,7 +103,7 @@ HSL rgb_to_hsl(double r, double g, double b, Maximums maximums) {
     return hsl;
 }
 
-void main (void) {
+int main (void) {
     int r;
     printf("Enter the R value : ");
     scanf("%d", &r);
@@ -124,9 +124,9 @@ void main (void) {
         l: 100
     };
     Maximums maximums = {
-        rgb: rgb_max,
-        hsl: hsl_max
+        hsl: hsl_max,
+        rgb: rgb_max
     };
     printf("rgb(%d, %d, %d) = hsl(%ddeg %d%% %d%%)\n", r, g, b, rgb_to_hsl(r, g, b, maximums).h, rgb_to_hsl(r, g, b, maximums).s, rgb_to_hsl(r, g, b, maximums).l);
-
+    return 0;   
 }
