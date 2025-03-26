@@ -24,12 +24,14 @@ const contentHlTS = $("#content-hl-ts")
 const contentHlTEX = $("#content-hl-tex")
 const contentHlPY = $("#content-hl-py")
 const contentHlC = $("#content-hl-c")
+const contentDlExe = $("#content-dl-exe")
 const showPdfLabel = $("#scc-label-pdf")
 const showJSLabel = $("#scc-label-js")
 const showTSLabel = $("#scc-label-ts")
 const showPyLabel = $("#scc-label-py")
 const showLaTexLabel = $("#scc-label-latex")
 const showCLabel = $("#scc-label-c")
+const showExeLabel = $("#scc-label-exe")
 
 
 
@@ -215,8 +217,9 @@ async function loadDocuments(evt) {
     highLightedPY.attr("data-highlighted", "")
     highLightedTS.html(await ajax("/CMYK-to-RGB/main.ts"))
     highLightedTS.attr("data-highlighted", "")
-    highLightedC.html(await ajax("/CMYK-to-RGB/main.c"))
-    highLightedC.html(highLightedC.html().replaceAll("<", "&lt;").replaceAll(">", "&gt;"))
+    const CData = await ajax("/CMYK-to-RGB/C/main.c")
+    highLightedC.html(CData.replaceAll("<", "&lt;").replaceAll(">", "&gt"))
+    //highLightedC.html(highLightedC.html().replaceAll("<", "&lt;").replaceAll(">", "&gt;"))
     highLightedC.attr("data-highlighted", "")
     console.log("loaded")
     hljs.highlightAll()
@@ -233,6 +236,7 @@ showPdfLabel.on("click", evt => {
     contentHlTEX.css("display", "none")
     contentHlTS.css("display", "none")
     contentHlC.css("display", "none")
+    contentDlExe.css("display", "none")
 })
 
 showJSLabel.on("click", evt => {
@@ -242,6 +246,7 @@ showJSLabel.on("click", evt => {
     contentHlTEX.css("display", "none")
     contentHlTS.css("display", "none")
     contentHlC.css("display", "none")
+    contentDlExe.css("display", "none")
 })
 
 showPyLabel.on("click", evt => {
@@ -251,6 +256,7 @@ showPyLabel.on("click", evt => {
     contentHlTEX.css("display", "none")
     contentHlTS.css("display", "none")
     contentHlC.css("display", "none")
+    contentDlExe.css("display", "none")
 })
 
 showLaTexLabel.on("click", evt => {
@@ -260,6 +266,7 @@ showLaTexLabel.on("click", evt => {
     contentHlTEX.css("display", "block")
     contentHlTS.css("display", "none")
     contentHlC.css("display", "none")
+    contentDlExe.css("display", "none")
 })
 
 showTSLabel.on("click", evt => {
@@ -269,6 +276,7 @@ showTSLabel.on("click", evt => {
     contentHlTEX.css("display", "none")
     contentHlTS.css("display", "block")
     contentHlC.css("display", "none")
+    contentDlExe.css("display", "none")
 })
 
 showCLabel.on("click", evt => {
@@ -278,5 +286,15 @@ showCLabel.on("click", evt => {
     contentHlTEX.css("display", "none")
     contentHlTS.css("display", "none")
     contentHlC.css("display", "block")
+    contentDlExe.css("display", "none")
 })
 
+showExeLabel.on("click", evt => {
+    displayedPDF.css("display", "none")
+    contentHlJS.css("display", "none")
+    contentHlPY.css("display", "none")
+    contentHlTEX.css("display", "none")
+    contentHlTS.css("display", "none")
+    contentHlC.css("display", "none")
+    contentDlExe.css("display", "block")
+})

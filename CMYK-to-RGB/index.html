@@ -28,7 +28,7 @@
         </label><label id="labelIsRounded" for="checkboxIsRounded"> Arrondir le résultat</label><br />
         <h1>rgb(<span id="rgb-r"></span>, <span id="rgb-g"></span>, <span id="rgb-b"></span>)</h1>
         <button type="button" id="copy-rgb">Copier le code RGB</button><br /><br />
-        <H2>Comment avons-nous fait ça ?</H2>
+        <H2>Formule & Programmes</H2>
         <div class="source-code-chooser tabs-container">
             <div class="source-code-chooser choices-container">
                 <div class="source-code-chooser choice">
@@ -44,6 +44,8 @@
                     <label class="source-code-chooser label-choice" id="scc-label-py" for="scc-radio-py">Python</label>
                     <input type="radio" class="source-code-chooser radio-choice" name="source-code-chooser" id="scc-radio-c">
                     <label class="source-code-chooser label-choice" id="scc-label-c" for="scc-radio-c">C</label>
+                    <input type="radio" class="source-code-chooser radio-choice" name="source-code-chooser" id="scc-radio-exe" />
+                    <label class="source-code-chooser label-choice" id="scc-label-exe" for="scc-radio-exe">Windows</label>
                     
                 </div>
             </div>
@@ -89,12 +91,19 @@
         </div>
         <div id="content-hl-c">
             <div class="download-links-container">
-                <a href="main.c" download>Download</a> <br />
-                <a href="main.min.c" download>Download Minified</a> <br />
+                <a href="C/main.c" download>main.c</a> (Avec la fonction de conversion et la partie où l'on demande à l'utilisateur les valeurs à convertir)<br />
+                <a href="C/main.h" download>main.h</a> (Avec la fonction de conversion mais sans la partie où l'on demande à l'utilisateur de convertir les valeurs)<br />
+                <a href="C/main-nofunc.c" download>main-nofunc.c</a> (Avec la partie où l'on demande à l'utilisateur de convertir les valeurs, mais sans la fonction de conversion, vous devrez donc importer le paquet main.h)<br />
+                <a href="javascript:void($('#scc-label-exe').click())" download>Page de téléchargement des exécutables Windows</a><br />
             </div>
             <pre>
                 <code class="language-c" id="highlighted-c"></code>
             </pre>
+        </div>
+        <div id="content-dl-exe">
+            <div class="download-links-container">
+                <a href="C/main.exe" download>main.exe</a> (Exécutable Windows)
+            </div>
         </div>
         
         <script src="/CMYK-to-RGB/index.js" type="text/javascript"></script>

@@ -2,63 +2,69 @@
 \usepackage{graphicx} % Required for inserting images
 \usepackage{mathtools}
 \usepackage{amsmath}
+\usepackage[a4paper, margin=1cm]{geometry}
 
-\title{RGB to CMYK}
+\title{RGB to CMYK Conversion Method}
 \author{Eliott TAKVORIAN}
-\date{November 2024}
+\date{March, 26\textsuperscript{th} 2025}
 
 \begin{document}
-    $R$ is the part of Red in the color to convert.
+	
+	\maketitle
+	
+    $C$ is the part of Cyan in the color to convert.
 
-    $G$ is the part of Green in the color to convert.
+    $M$ is the part of Magenta in the color to convert.
 
-    $B$ is the part of Blue in the color to convert.
-
-    $M_{axR}$ is the possible maximum of $R$ (generally 100 or 255)
-
-    $M_{axG}$ is the possible maximum of $G$ (generally 100 or 255)
-
-    $M_{axR}$ is the possible maximum of $R$ (generally 100 or 255)\\
-
-    $R'$, $G'$, $B'$, $C'$, $M'$, $Y'$ and $K'$ are internal variables that mustn't be displayed.\\
-
-    $C$ is the part of Cyan in the converted color.
-
-    $M$ is the part of Magenta in the converted color.
-
-    $Y$ is the part of Yellow in the converted color.
-
-    $K$ is the part of blacK in the converted color.
-
-    $M_{axC}$ is the possible maximum of $C$ (generally 100, 1 or 255).
-
-    $M_{axM}$ is the possible maximum of $M$ (generally 100, 1 or 255).
-
-    $M_{axY}$ is the possible maximum of $Y$ (generally 100, 1 or 255).
-
-    $M_{axK}$ is the possible maximum of $K$ (generally 100, 1 or 255).\\
-
-    $R'=\frac{R}{M_{axR}}$\\
-
-    $G'=\frac{G}{M_{axG}}$\\
-
-    $B'=\frac{B}{M_{axB}}$\\\\
-
-    $K'=1-\max(R', G', B')$\\
-
-    $C'=\frac{1-R'-K'}{1-K'}$\\
-
-    $M'=\frac{1-G'-K'}{1-K'}$\\
-
-    $Y'=\frac{1-B'-K'}{1-K'}$\\\\
-
-    $C=C'\times M_{axC}$\\
-
-    $M=M'\times M_{axM}$\\
-
-    $Y=Y'\times M_{axY}$\\
-
-    $K=K'\times M_{axK}$\\
-
+    $Y$ is the part of Yellow in the color to convert.
     
+    $K$ is the part of black ($K$ for Key, to avoid confusion with Blue)\\
+    
+
+    $M_{axC}$ is the possible maximum of $C$ (generally 100, 1 or 255)
+
+    $M_{axM}$ is the possible maximum of $M$ (generally 100, 1 or 255)
+	
+	$M_{axY}$ is the possible maximum of $Y$ (generally 100, 1 or 255)
+	
+    $M_{axK}$ is the possible maximum of $K$ (generally 100, 1 or 255)\\
+
+    $R'$, $G'$, $B'$, $C'$, $M'$, $Y'$ and $K'$ are internal variables that don't need to be displayed.\\
+
+    $R$ is the part of Red in the converted color.
+
+    $G$ is the part of Green in the converted color.
+
+    $B$ is the part of Blue in the converted color.\\
+    
+
+    $M_{axR}$ is the possible maximum of $R$ (generally 100 or 255).
+
+    $M_{axG}$ is the possible maximum of $G$ (generally 100 or 255).
+
+    $M_{axB}$ is the possible maximum of $B$ (generally 100 or 255).\\\\
+
+
+    $C'=\frac{C}{M_{axC}}$\\
+
+    $M'=\frac{M}{M_{axM}}$\\
+
+    $Y'=\frac{Y}{M_{axY}}$\\
+
+    $K'=\frac{K}{M_{axK}}$\\\\
+    
+
+    $R'=(1-C')\times(1-K')$\\
+    
+    $G'=(1-M')\times(1-K')$\\
+    
+    $B'=(1-Y')\times(1-K')$\\\\
+    
+    
+    $R=M_{axR}\times R'$\\
+    
+    $G=M_{axG}\times G'$\\
+    
+    $B=M_{axB}\times B'$\\
+        
 \end{document}

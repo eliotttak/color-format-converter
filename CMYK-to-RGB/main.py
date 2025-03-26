@@ -2,7 +2,7 @@ def cmyk_to_rgb(c, m, y, k, maximums):
     """
     The function cmyk_to_rgb() convert CMYK colors in RGB. You can choose the value ranges in the fourth argument.
     How to use :
-    cmyk_to_rgb(c: number, m: number, y: number, k: number, {
+    cmyk_to_rgb(c: number, m: number, y: number, k: number, maximums = {
         rgb: {
             r: number = 255,
             g: number = 255,
@@ -12,7 +12,8 @@ def cmyk_to_rgb(c, m, y, k, maximums):
             c: number = 255,
             m: number = 255,
             y: number = 255,
-            k: number = 255        
+            k: number = 255
+        }    
     })
     """
     maximums["cmyk"] = getattr(maximums, 'cmyk', {
@@ -44,12 +45,14 @@ def cmyk_to_rgb(c, m, y, k, maximums):
     if c_ < 0 or c_ > 255 or m_ < 0 or m_ > 255 or y_ < 0 or y_ > 255 or k_ < 0 or k_ > 255 :
         return None
     
-    r_ = maximums["rgb"]["r"] * (1 - c_) * (1 - k_)
-    g_ = maximums["rgb"]["g"] * (1 - m_) * (1 - k_)
-    b_ = maximums["rgb"]["b"] * (1 - y_) * (1 - k_)
+    r_ = (1 - c_) * (1 - k_)
+    g_ = (1 - m_) * (1 - k_)
+    b_ = (1 - y_) * (1 - k_)
 
-    return {
-        "r": r_,
-        "g": g_,
-        "b": b_
+    results = {
+        "r": r_ * maximums["rgb"]["r"],
+        "g": g_ * maximums["rgb"]["g"],
+        "b": b_ * maximums["rgb"]["b"]
     }
+
+    return results
