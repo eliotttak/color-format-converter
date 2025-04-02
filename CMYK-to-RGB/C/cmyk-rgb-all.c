@@ -1,7 +1,26 @@
 #include <stdio.h>
-#include <conio.h>
 #include <math.h>
+/*
+#ifdef _WIN32
+    #include <conio.h>
 
+#else
+    #include <unistd.h>
+    #include <termios.h>
+
+    int getch(void) {
+        struct termios oldattr, newattr;
+        int ch;
+        tcgetattr(STDIN_FILENO, &oldattr);
+        newattr = oldattr;
+        newattr.c_lflag &= ~(ICANON | ECHO);
+        tcsetattr(STDIN_FILENO, TCSANOW, &newattr);
+        ch = getchar();
+        tcsetattr(STDIN_FILENO, TCSANOW, &oldattr);
+        return ch;
+    }
+#endif
+*/
 // Structures for maximum CMYK and RGB values
 typedef struct {
     double c;
@@ -88,6 +107,8 @@ int main(void) {
     printf("Enter the K value : ");
     scanf("%d", &k);
     
+    while (getchar() != '\n');
+
     RGB_Max rgb_max = {
         .r = 255,
         .g = 255,
@@ -106,6 +127,6 @@ int main(void) {
     };
     
     printf("\ncmyk(%d, %d, %d, %d) = rgb(%d, %d, %d)\n\nAppuyez sur une touche pour fermer cette fenetre...\n", c, m, y, k, cmyk_to_rgb(c, m, y, k, maximums).r, cmyk_to_rgb(c, m, y, k, maximums).g, cmyk_to_rgb(c, m, y, k, maximums).b);
-    getch();
+    getchar();
     return 0;
 }
