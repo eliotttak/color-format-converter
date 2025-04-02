@@ -140,4 +140,3 @@ input[type="range"]::-moz-range-thumb {
 .source-code-chooser.radio-choice:checked + .source-code-chooser.label-choice {
     font-weight: bolder;
 }
-

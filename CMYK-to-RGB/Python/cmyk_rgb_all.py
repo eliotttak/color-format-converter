@@ -1,6 +1,6 @@
-def cmyk_to_rgb(c, m, y, k, maximums):
+def cmyk_to_rgb(c, m, y, k, maximums = {}):
     """
-    The function cmyk_to_rgb() convert CMYK colors in RGB. You can choose the value ranges in the fourth argument.
+    The function cmyk_to_rgb() convert CMYK colors in RGB. You can choose the value ranges in the fifth argument.
     How to use :
     cmyk_to_rgb(c: number, m: number, y: number, k: number, maximums = {
         rgb: {
@@ -49,10 +49,19 @@ def cmyk_to_rgb(c, m, y, k, maximums):
     g_ = (1 - m_) * (1 - k_)
     b_ = (1 - y_) * (1 - k_)
 
-    results = {
+    rgb = {
         "r": r_ * maximums["rgb"]["r"],
         "g": g_ * maximums["rgb"]["g"],
         "b": b_ * maximums["rgb"]["b"]
     }
 
-    return results
+    return rgb
+
+
+c = float(input("Enter the C value : "))
+m = float(input("Enter the M value : "))
+y = float(input("Enter the Y value : "))
+k = float(input("Enter the K value : "))
+
+print(f"\ncmyk({c}, {m}, {y}, {k}) = rgb({round(cmyk_to_rgb(c, m, y, k)["r"], 2)}, {round(cmyk_to_rgb(c, m, y, k)["g"], 2)}, {round(cmyk_to_rgb(c, m, y, k)["b"], 2)})\n\nAppuyez sur Entrée pour fermer cette fenetre...")
+input()

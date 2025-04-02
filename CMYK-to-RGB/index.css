@@ -1,12 +1,12 @@
-html {
-    font-family: Arial;
-}
-
-
 @font-face {
     font-family: Arial;
     src: url("/Arial/arial.ttf");
 }
+
+html {
+    font-family: Arial;
+}
+
 
 input.range{
     border: none;
@@ -146,8 +146,7 @@ input[type="range"]::-moz-range-thumb {
 .source-code-chooser.radio-choice {
     display: none;
 }
-
+/*
 .source-code-chooser.radio-choice:checked + .source-code-chooser.label-choice {
     font-weight: bolder;
-}
-
+}*/

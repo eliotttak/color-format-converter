@@ -9,9 +9,11 @@
         <script src="../highlight/highlight.min.js" type="text/javascript"></script>
         <script src="../jquery/jquery-3.7.1.min.js" type="text/javascript"></script>
         <script type="text/javascript" src="../highlight/languages/javascript.min.js" onload="hljs.highlightAll();"></script>
+        <script src="/Clipboard-polyfill/clipboard-polyfill.min.js" type="text/javascript"></script>
     </head>
     <body>
         <textarea name="to-copy-input" id="to-copy-text"></textarea>
+        <span class="fa-solid fa-g"></span><br />
         <strong class="cmyk-color-names c">C</strong><input type="range" class="range" name="c-range" id="c-range" min="0" max="255" value="0"/>
         <input type="number" class="number" name="c-number" id="c-number" min="0" max="255" value="0"/><br />
         <strong class="cmyk-color-names m">M</strong><input type="range" class="range" name="m-range" id="m-range" min="0" max="255" value="0"/>
@@ -46,7 +48,7 @@
                     <label class="source-code-chooser label-choice" id="scc-label-c" for="scc-radio-c">C</label>
                     <input type="radio" class="source-code-chooser radio-choice" name="source-code-chooser" id="scc-radio-exe" />
                     <label class="source-code-chooser label-choice" id="scc-label-exe" for="scc-radio-exe">Windows</label>
-                    
+                    <span id="choose-tab-underline"></span>
                 </div>
             </div>
         </div> <br />
@@ -67,7 +69,7 @@
                 <a href="main.ts" download>Download</a> <br />
                 <a href="main.min.ts" download>Download Minified</a> <br />
             </div>
-            <pre>w
+            <pre>
                 <code class="language-typescript" id="highlighted-ts"></code>
             </pre>
         </div>
@@ -82,8 +84,15 @@
         </div>
         <div id="content-hl-py">
             <div class="download-links-container">
-                <a href="main.py" download>Download</a> <br />
-                <a href="main.min.py" download>Download Minified</a> <br />
+                <h3>Code Original</h3>
+                <a href="Python/cmyk_rgb_all.py" download>cmyk_rgb_all.py</a> (Avec la fonction de conversion et la partie où l'on demande à l'utilisateur les valeurs à convertir)<br />
+                <a href="Python/cmyk_rgb_pack.py" download>cmyk_rgb_pack.py</a> (Avec la fonction de conversion mais sans la partie où l'on demande à l'utilisateur de convertir les valeurs)<br />
+                <a href="Python/cmyk_rgb_user.py" download>cmyk_    rgb_user.py</a> (Avec la partie où l'on demande à l'utilisateur de convertir les valeurs, mais sans la fonction de conversion, vous devrez donc importer le paquet main.h)<br />
+
+                <h3>Code Minimisé</h3>
+                <a href="Python/cmyk_rgb_all.min.py" download>cmyk_rgb_all.min.py</a><br />
+                <a href="Python/cmyk_rgb_pack.min.py" download>cmyk_rgb_pack.min.py</a><br />
+                <a href="Python/cmyk_rgb_user.min.py" download>cmyk_rgb_user.min.py</a><br /><br />
             </div>
             <pre>
                 <code class="language-py" id="highlighted-py"></code>
@@ -91,10 +100,30 @@
         </div>
         <div id="content-hl-c">
             <div class="download-links-container">
-                <a href="C/main.c" download>main.c</a> (Avec la fonction de conversion et la partie où l'on demande à l'utilisateur les valeurs à convertir)<br />
-                <a href="C/main.h" download>main.h</a> (Avec la fonction de conversion mais sans la partie où l'on demande à l'utilisateur de convertir les valeurs)<br />
-                <a href="C/main-nofunc.c" download>main-nofunc.c</a> (Avec la partie où l'on demande à l'utilisateur de convertir les valeurs, mais sans la fonction de conversion, vous devrez donc importer le paquet main.h)<br />
-                <a href="javascript:void($('#scc-label-exe').click())" download>Page de téléchargement des exécutables Windows</a><br />
+                <h3>Code Original</h3>
+                <a href="C/cmyk-rgb-all.c" download><code>cmyk-rgb-all.c</code></a> (Avec la fonction de conversion et la partie où l'on demande à l'utilisateur les valeurs à convertir)<br />
+                <a href="C/cmyk-rgb-head.h" download><code>cmyk-rgb-head.h</code></a> (Avec la fonction de conversion mais sans la partie où l'on demande à l'utilisateur de convertir les valeurs)<br />
+                <a href="C/cmyk-rgb-user.c" download><code>cmyk-rgb-user.c</code></a> (Avec la partie où l'on demande à l'utilisateur de convertir les valeurs, mais sans la fonction de conversion, vous devrez donc importer le paquet <code>cmyk-rgb-user.c</code>)<br />
+
+                <h3>Code Minimisé</h3>
+                <a href="C/cmyk-rgb-all.min.c" download><code>cmyk-rgb-all.min.c</code></a><br />
+                <a href="C/cmyk-rgb-head.min.h" download><code>cmyk-rgb-head.min.h</code></a><br />
+                <a href="C/cmyk-rgb-user.min.c" download><code>cmyk-rgb-user.min.c</code></a><br />
+
+                <h3>Archives Zip</h3>
+                <a href="C/All-sources-and-exe.zip" download><code>All-sources-and-exe.zip</code></a> (Contient toutes les sources originales et minifiées, et l'exécutable Windows disponible <a href="javascript:void($('#scc-label-exe').click())">ici</a>)<br />
+                <a href="C/All-sources.zip" download><code>All-sources.zip</code></a> (Contient toutes les sources originales et minifiées, mais pas l'exécutable windows disponible <a href="javascript:void($('#scc-label-exe').click())">ici</a>)<br />
+                <a href="C/Separed-sources-and-exe.zip" download><code>Separed-sources-and-exe.zip</code></a> (Contient <code>cmyk-rgb-head.h</code> original et minifié, <code>cmyk-rgb-user.c</code> original et minifé, et l'exécutable windows disponible <a href="javascript:void($('#scc-label-exe').click())">ici</a>)<br />
+                <a href="C/Separed-sources.zip" download><code>Separed-sources.zip</code></a> (Contient <code>cmyk-rgb-head.h</code> original et minifié, <code>cmyk-rgb-user.c</code> original et minifié, mais pas l'exécutable windows disponible <a href="javascript:void($('#scc-label-exe').click())">ici</a>)<br />
+                <a href="C/All-original-sources-and-exe.zip" download><code>All-original-sources-and-exe.zip</code></a> (Contient toutes les sources originales et l'exécutable windows disponible <a href="javascript:void($('#scc-label-exe').click())">ici</a>)<br />
+                <a href="C/All-original-sources.zip" download><code>All-original-sources.zip</code></a> (Contient toutes les sources originales mais pas l'exécutable windows disponible <a href="javascript:void($('#scc-label-exe').click())">ici</a>)<br />
+                <a href="C/Separed-original-sources-and-exe.zip" download><code>Separed-original-sources-and-exe.zip</code></a> (Contient <code>cmyk-rgb-head.h</code> original, <code>cmyk-rgb-user.c</code> original, et l'exécutable windows disponible <a href="javascript:void($('#scc-label-exe').click())">ici</a>)<br />
+                <a href="C/Separed-original-sources.zip" download><code>Separed-original-sources-and-exe.zip</code></a> (Contient <code>cmyk-rgb-head.h</code> original, <code>cmyk-rgb-user.c</code> original, mais pas l'exécutable windows disponible <a href="javascript:void($('#scc-label-exe').click())">ici</a>)<br />
+                <a href="C/Separed-original-sources-and-exe.zip" download><code>Separed-original-sources-and-exe.zip</code></a> (Contient <code>cmyk-rgb-head.h</code> original, <code>cmyk-rgb-user.c</code> original, et l'exécutable windows disponible <a href="javascript:void($('#scc-label-exe').click())">ici</a>)<br />
+                <a href="C/Separed-original-sources-and-exe.zip" download><code>Separed-original-sources-and-exe.zip</code></a> (Contient <code>cmyk-rgb-head.h</code> original, <code>cmyk-rgb-user.c</code> original, et l'exécutable windows disponible <a href="javascript:void($('#scc-label-exe').click())">ici</a>)<br />
+                <a href="C/Separed-original-sources-and-exe.zip" download><code>Separed-original-sources-and-exe.zip</code></a> (Contient <code>cmyk-rgb-head.h</code> original, <code>cmyk-rgb-user.c</code> original, et l'exécutable windows disponible <a href="javascript:void($('#scc-label-exe').click())">ici</a>)<br />
+                <a href="C/Separed-original-sources-and-exe.zip" download><code>Separed-original-sources-and-exe.zip</code></a> (Contient <code>cmyk-rgb-head.h</code> original, <code>cmyk-rgb-user.c</code> original, et l'exécutable windows disponible <a href="javascript:void($('#scc-label-exe').click())">ici</a>)<br />
+                <a href="javascript:void($('#scc-label-exe').click())">Page de téléchargement des exécutables Windows</a><br />
             </div>
             <pre>
                 <code class="language-c" id="highlighted-c"></code>
@@ -102,10 +131,11 @@
         </div>
         <div id="content-dl-exe">
             <div class="download-links-container">
-                <a href="C/main.exe" download>main.exe</a> (Exécutable Windows)
+                <a href="C/main.exe" download>main.exe</a> (Exécutable Windows)<br />
+                <a href="javascript:void($('#scc-label-c').click())">Page de téléchargement et de visualisation du code source C</a>
             </div>
         </div>
-        
+
         <script src="/CMYK-to-RGB/index.js" type="text/javascript"></script>
     </body>
 </html>

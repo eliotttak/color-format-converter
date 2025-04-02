@@ -4,3 +4,5 @@
 */main.synctex.gz
 */a.exe
 */test.*
+.vscode
+__pycache__

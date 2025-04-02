@@ -1,5 +1,5 @@
-def rgb_to_cmyk(r,g,b,maximums):
-    maximums["cmyk"]=getattr(maximums,'cmyk',{"c": 255,"m":255,"y":255,"k":255})
+def cmyk_to_rgb(c,m,y,k,maximums={}):
+    maximums["cmyk"]=getattr(maximums,'cmyk',{"c":255,"m":255,"y":255,"k":255})
     maximums["rgb"]=getattr(maximums,'rgb',{"r":255,"g":255,"b":255})
     maximums["cmyk"]["c"]=getattr(maximums["cmyk"],"c",255)
     maximums["cmyk"]["m"]=getattr(maximums["cmyk"],"m",255)
@@ -8,13 +8,14 @@ def rgb_to_cmyk(r,g,b,maximums):
     maximums["rgb"]["r"]=getattr(maximums["rgb"],"r",255)
     maximums["rgb"]["g"]=getattr(maximums["rgb"],"g",255)
     maximums["rgb"]["b"]=getattr(maximums["rgb"],"b",255)
-    r_=r/maximums["rgb"]["r"]
-    g_=g/maximums["rgb"]["g"]
-    b_=b/maximums["rgb"]["b"]
-    if r_<0 or r_>1 or g_<0 or g_>1 or b_<0 or b_>1:
+    c_=c/maximums["cmyk"]["c"]
+    m_=m/maximums["cmyk"]["m"]
+    y_=y/maximums["cmyk"]["y"]
+    k_=k/maximums["cmyk"]["k"]
+    if c_<0 or c_>255 or m_<0 or m_>255 or y_<0 or y_>255 or k_<0 or k_>255:
         return None
-    k_=1-max(r_,g_,b_)
-    c_=(1-r_-k_)/(1-k_)
-    m_=(1-g_-k_)/(1-k_)
-    y_=(1-b_-k_)/(1-k_)
-    return {"c":c_*maximums["cmyk"]["c"],"m":m_*maximums["cmyk"]["m"],"y":y_*maximums["cmyk"]["y"],"k":k_*maximums["cmyk"]["k"]}
+    r_=(1-c_)*(1-k_)
+    g_=(1-m_)*(1-k_)
+    b_=(1-y_)*(1-k_)
+    rgb={"r":r_*maximums["rgb"]["r"],"g":g_*maximums["rgb"]["g"],"b":b_*maximums["rgb"]["b"]}
+    return rgb

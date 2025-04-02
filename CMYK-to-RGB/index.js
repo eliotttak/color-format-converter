@@ -32,6 +32,8 @@ const showPyLabel = $("#scc-label-py")
 const showLaTexLabel = $("#scc-label-latex")
 const showCLabel = $("#scc-label-c")
 const showExeLabel = $("#scc-label-exe")
+const chooseTabUnderline = $("#choose-tab-underline")
+
 
 
 
@@ -160,16 +162,13 @@ kNumber.on("input", evt => {
 
 copyRgbButton.on("click", evt => {
     /* Copy the text */
-    toCopyHidden.html(`rgb(${lastRgbResult.r}, ${lastRgbResult.g}, ${lastRgbResult.b})`)
-    toCopyHidden.select()
-    toCopyHidden.get(0).setSelectionRange(0, 99999);
-    navigator.clipboard.writeText(toCopyHidden.val());
+    clipboard.writeText(`rgb(${lastRgbResult.r}, ${lastRgbResult.g}, ${lastRgbResult.b})`)
 
     /* Show "Copié !" with a green background */
     copyRgbButton.html("Copié !")
     copyRgbButton.css("background-color", "#00B13B")
     setTimeout(() => {
-        copyRgbButton.html("Copier le code HSL")
+        copyRgbButton.html("Copier le code RGB")
         copyRgbButton.css("background-color", "#CCCCCC")
     }, 2000)
 })
@@ -208,16 +207,17 @@ isRoundedCheckbox.on("click", () => {
 
 
 async function loadDocuments(evt) {
+    debugger
     $(document).off("mouseover")
     highLightedJS.html(await ajax("/CMYK-to-RGB/main.js"))
     highLightedJS.attr("data-highlighted", "")
     highLightedTEX.html(await ajax("/CMYK-to-RGB/main.tex"))
     highLightedTEX.attr("data-highlighted", "")
-    highLightedPY.html(await ajax("/CMYK-to-RGB/main.py"))
+    highLightedPY.html(await ajax("/CMYK-to-RGB/Python/cmyk_rgb_all.py  "))
     highLightedPY.attr("data-highlighted", "")
     highLightedTS.html(await ajax("/CMYK-to-RGB/main.ts"))
     highLightedTS.attr("data-highlighted", "")
-    const CData = await ajax("/CMYK-to-RGB/C/main.c")
+    const CData = await ajax("/CMYK-to-RGB/C/cmyk-rgb-all.c")
     highLightedC.html(CData.replaceAll("<", "&lt;").replaceAll(">", "&gt"))
     //highLightedC.html(highLightedC.html().replaceAll("<", "&lt;").replaceAll(">", "&gt;"))
     highLightedC.attr("data-highlighted", "")
@@ -228,7 +228,7 @@ async function loadDocuments(evt) {
 
 $(document).on("mouseover", loadDocuments)
 
-showPdfLabel.on("click", evt => {
+showPdfLabel.on("click", async evt => {
     console.log("pdf")
     displayedPDF.css("display", "block")
     contentHlJS.css("display", "none")
@@ -237,9 +237,28 @@ showPdfLabel.on("click", evt => {
     contentHlTS.css("display", "none")
     contentHlC.css("display", "none")
     contentDlExe.css("display", "none")
+    
+    chooseTabUnderline.css("width", `${showPdfLabel.width()}px`)
+    chooseTabUnderline.css("top", `${showPdfLabel.height() + showPdfLabel.offset().top + 2}px`)
+
+    while (true) {
+    
+        console.log(`chooseTabUnderline.offset().left = ${Math.round(chooseTabUnderline.offset().left)}`)
+        console.log(`showPdfLabel.offest().left = ${Math.round(showPdfLabel.offset().left)}`)
+        if (Math.round(chooseTabUnderline.offset().left) == Math.round(showPdfLabel.offset().left) || Math.round(chooseTabUnderline.offset().left) == Math.round(showPdfLabel.offset().left) - 1) {
+            console.log("coucou")
+            break
+        }
+
+        chooseTabUnderline.css("left", `${chooseTabUnderline.offset().left - 2}px`)
+        await pause(.03125)
+    }
+
+    //chooseTabUnderline.css("left", `${showPdfLabel.offset().left}px`)
+    console.log("end pdf")
 })
 
-showJSLabel.on("click", evt => {
+showJSLabel.on("click", async evt => {
     displayedPDF.css("display", "none")
     contentHlJS.css("display", "block")
     contentHlPY.css("display", "none")
@@ -247,9 +266,24 @@ showJSLabel.on("click", evt => {
     contentHlTS.css("display", "none")
     contentHlC.css("display", "none")
     contentDlExe.css("display", "none")
+    
+    chooseTabUnderline.css("width", `${showJSLabel.width()}px`)
+    chooseTabUnderline.css("top", `${showJSLabel.height() + showJSLabel.offset().top + 2}px`)
+
+    while (true) {
+        console.log(`chooseTabUnderline.offset().left = ${Math.round(chooseTabUnderline.offset().left)}`)
+        console.log(`showPdfLabel.offest().left = ${Math.round(showJSLabel.offset().left)}`)
+        if (Math.round(chooseTabUnderline.offset().left) == Math.round(showJSLabel.offset().left) || Math.round(chooseTabUnderline.offset().left) == Math.round(showJSLabel.offset().left) - 1) {
+            console.log("coucou")
+            break
+        }
+
+        chooseTabUnderline.css("left", `${chooseTabUnderline.offset().left > showJSLabel.offset().left ? chooseTabUnderline.offset().left - 2 : chooseTabUnderline.offset().left + 2}px`)
+        await pause(.03125)
+    }
 })
 
-showPyLabel.on("click", evt => {
+showPyLabel.on("click", async evt => {
     displayedPDF.css("display", "none")
     contentHlJS.css("display", "none")
     contentHlPY.css("display", "block")
@@ -257,9 +291,24 @@ showPyLabel.on("click", evt => {
     contentHlTS.css("display", "none")
     contentHlC.css("display", "none")
     contentDlExe.css("display", "none")
+   
+    chooseTabUnderline.css("width", `${showPyLabel.width()}px`)
+    chooseTabUnderline.css("top", `${showPyLabel.height() + showPyLabel.offset().top + 2}px`)
+
+    while (true) {
+        console.log(`chooseTabUnderline.offset().left = ${Math.round(chooseTabUnderline.offset().left)}`)
+        console.log(`showPdfLabel.offest().left = ${Math.round(showPyLabel.offset().left)}`)
+        if (Math.round(chooseTabUnderline.offset().left) == Math.round(showPyLabel.offset().left) || Math.round(chooseTabUnderline.offset().left) == Math.round(showPyLabel.offset().left) - 1) {
+            console.log("coucou")
+            break
+        }
+
+        chooseTabUnderline.css("left", `${chooseTabUnderline.offset().left > showPyLabel.offset().left ? chooseTabUnderline.offset().left - 2 : chooseTabUnderline.offset().left + 2}px`)
+        await pause(.03125)
+    }
 })
 
-showLaTexLabel.on("click", evt => {
+showLaTexLabel.on("click", async evt => {
     displayedPDF.css("display", "none")
     contentHlJS.css("display", "none")
     contentHlPY.css("display", "none")
@@ -267,9 +316,24 @@ showLaTexLabel.on("click", evt => {
     contentHlTS.css("display", "none")
     contentHlC.css("display", "none")
     contentDlExe.css("display", "none")
+    
+    chooseTabUnderline.css("width", `${showLaTexLabel.width()}px`)
+    chooseTabUnderline.css("top", `${showLaTexLabel.height() + showLaTexLabel.offset().top + 2}px`)
+
+    while (true) {
+        console.log(`chooseTabUnderline.offset().left = ${Math.round(chooseTabUnderline.offset().left)}`)
+        console.log(`showPdfLabel.offest().left = ${Math.round(showLaTexLabel.offset().left)}`)
+        if (Math.round(chooseTabUnderline.offset().left) == Math.round(showLaTexLabel.offset().left) || Math.round(chooseTabUnderline.offset().left) == Math.round(showLaTexLabel.offset().left) - 1) {
+            console.log("coucou")
+            break
+        }
+
+        chooseTabUnderline.css("left", `${chooseTabUnderline.offset().left > showLaTexLabel.offset().left ? chooseTabUnderline.offset().left - 2 : chooseTabUnderline.offset().left + 2}px`)
+        await pause(0.03125)
+    }
 })
 
-showTSLabel.on("click", evt => {
+showTSLabel.on("click", async evt => {
     displayedPDF.css("display", "none")
     contentHlJS.css("display", "none")
     contentHlPY.css("display", "none")
@@ -277,9 +341,24 @@ showTSLabel.on("click", evt => {
     contentHlTS.css("display", "block")
     contentHlC.css("display", "none")
     contentDlExe.css("display", "none")
+    
+    chooseTabUnderline.css("width", `${showTSLabel.width()}px`)
+    chooseTabUnderline.css("top", `${showTSLabel.height() + showTSLabel.offset().top + 2}px`)
+
+    while (true) {
+        console.log(`chooseTabUnderline.offset().left = ${Math.round(chooseTabUnderline.offset().left)}`)
+        console.log(`showPdfLabel.offest().left = ${Math.round(showTSLabel.offset().left)}`)
+        if (Math.round(chooseTabUnderline.offset().left) == Math.round(showTSLabel.offset().left) || Math.round(chooseTabUnderline.offset().left) == Math.round(showTSLabel.offset().left) - 1) {
+            console.log("coucou")
+            break
+        }
+
+        chooseTabUnderline.css("left", `${chooseTabUnderline.offset().left > showTSLabel.offset().left ? chooseTabUnderline.offset().left - 2 : chooseTabUnderline.offset().left + 2}px`)
+        await pause(0.03125)
+    }
 })
 
-showCLabel.on("click", evt => {
+showCLabel.on("click", async evt => {
     displayedPDF.css("display", "none")
     contentHlJS.css("display", "none")
     contentHlPY.css("display", "none")
@@ -287,9 +366,24 @@ showCLabel.on("click", evt => {
     contentHlTS.css("display", "none")
     contentHlC.css("display", "block")
     contentDlExe.css("display", "none")
+    
+    chooseTabUnderline.css("width", `${showCLabel.width()}px`)
+    chooseTabUnderline.css("top", `${showCLabel.height() + showCLabel.offset().top + 2}px`)
+
+    while (true) {
+        console.log(`chooseTabUnderline.offset().left = ${Math.round(chooseTabUnderline.offset().left)}`)
+        console.log(`showPdfLabel.offest().left = ${Math.round(showCLabel.offset().left)}`)
+        if (Math.round(chooseTabUnderline.offset().left) == Math.round(showCLabel.offset().left) || Math.round(chooseTabUnderline.offset().left) == Math.round(showCLabel.offset().left) - 1) {
+            console.log("coucou")
+            break
+        }
+
+        chooseTabUnderline.css("left", `${chooseTabUnderline.offset().left > showCLabel.offset().left ? chooseTabUnderline.offset().left - 2 : chooseTabUnderline.offset().left + 2}px`)
+        await pause(0.03125)
+    }
 })
 
-showExeLabel.on("click", evt => {
+showExeLabel.on("click", async evt => {
     displayedPDF.css("display", "none")
     contentHlJS.css("display", "none")
     contentHlPY.css("display", "none")
@@ -297,4 +391,27 @@ showExeLabel.on("click", evt => {
     contentHlTS.css("display", "none")
     contentHlC.css("display", "none")
     contentDlExe.css("display", "block")
+    
+    chooseTabUnderline.css("width", `${showExeLabel.width()}px`)
+    chooseTabUnderline.css("top", `${showExeLabel.height() + showExeLabel.offset().top + 2}px`)
+
+    while (true) {
+        console.log(`chooseTabUnderline.offset().left = ${Math.round(chooseTabUnderline.offset().left)}`)
+        console.log(`showPdfLabel.offest().left = ${Math.round(showExeLabel.offset().left)}`)
+        if (Math.round(chooseTabUnderline.offset().left) == Math.round(showExeLabel.offset().left) || Math.round(chooseTabUnderline.offset().left) == Math.round(showExeLabel.offset().left) - 1) {
+            console.log("coucou")
+            break
+        }
+
+        chooseTabUnderline.css("left", `${chooseTabUnderline.offset().left > showExeLabel.offset().left ? chooseTabUnderline.offset().left - 2 : chooseTabUnderline.offset().left + 2}px`)
+        await pause(0.03125)
+    }
 })
+
+let stateInterval = setInterval(() => {
+    if (document.readyState === "complete") {
+        chooseTabUnderline.css("position", "absolute").css("background-color", "blue").css("height", "5px")
+        showPdfLabel.click()
+        clearInterval(stateInterval)
+    }
+}, 10)

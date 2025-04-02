@@ -92,6 +92,10 @@ const server = http.createServer((request, result) => { // création du server
                 case "woff2":
                     type = "font/woff2"
                     break
+                case "ttf":
+                    type = "font/ttf"
+                    break
+                case "exe":
                 default:
                     // It's not very correct but I will considerating that the other files are Linux executables
                     type = "application/x-executable"
