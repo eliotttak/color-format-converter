@@ -88,35 +88,31 @@ async function pause(duration) {
  * @async
  * @example
  * // In absolute terms, these examples do almost the same thing, but they have their pros and cons:
- * //   - the first being less long but absolutely needing to be in an 'async' function;
- * //   - the second not having this necessity but being longer because the Promise object has to be managed manually.
+ * //   - the first being synchronous but absolutely needing to be in an 'async' function;
+ * //   - the second bein asynchronous but being longer because the Promise object has to be managed manually.
  * 
- * // First example
- * (async function() {
- *     console.log(await ajax("https://example.org/index.html"))
- * })
- * 
- * // Second example
- * ajax("https://example.org/index.html").then(function(data) {
+ * // First example:
+ * (async () => { // Auto-executed async function, for use 'await' later
+ *     let data = await ajax("https://example.org/index.html")
  *     console.log(data)
- * })
+ * })()
+ * 
+ * // Second example:
+ * ajax("https://example.org/index.html)
+ *     .then(data => {
+ *         console.log(data)
+ *     })
  */
-async function ajax(url) {
-    let toReturnValue
-    let isReceived = false
-    $.get(url, data => {
-        isReceived = true
-        toReturnValue = data
-    });
-    while (true) {
-        if (isReceived) {
-            console.log("received")
-            return toReturnValue
-        }
-        await pause(500)
-    }
+function ajax(url) {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: url,
+            method: 'GET',
+            success: data => resolve(data),
+            error: (jqXHR, textStatus, error) => reject(error)
+        })
+    })
 }
-
 
 /**
  * @description This function rounds a number to a given number of decimal places.
