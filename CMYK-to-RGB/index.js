@@ -103,7 +103,7 @@ async function pause(duration) {
  *         console.log(data)
  *     })
  */
-function ajax(url) {
+const ajax = url => {
     return new Promise((resolve, reject) => {
         $.ajax({
             url: url,
