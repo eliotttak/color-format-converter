@@ -1,105 +1,90 @@
 const http = require("http")
 const fs = require("fs")
+const nodeMimeTypes = require("node-mime-types")
+const fileType = require("file-type")
 
-const server = http.createServer((request, result) => { // création du server
+const getMime = async file => {
+    if (typeof file === "string") {
+        try {
+            return (await fileType.fileTypeFromFile(file)).mime || nodeMimeTypes.getMIMEType(file)
+        }
+        catch {
+            return nodeMimeTypes.getMIMEType(file)
+        }
+    }
+}
+
+function send404(name, request, result) {
+    if (request?.headers?.accept?.indexOf("text/html") !== -1) {
+        let disp = {
+            status : "ERROR",
+            url : name.replaceAll("C:\\Users\\takvoriane", "").replaceAll("/home/elapp", ""),
+            code : 404,
+            datetime : new Date().toString(),
+            send : "./error-pages/error.html", 
+        }
+
+        /*const reqHost = `http://${request.headers.host}`
+        const reqUrl = request.url
+        const parsedReqUrl = new URL(reqHost, reqUrl)*/
+        
+        const resultParams = {
+            errorcontent: "Le fichier {{filename}} n'existe pas sur ce serveur.",
+            filename: name.replace(__dirname, ""),
+            errorname: "404 FILE_NOT_FOUND_ERROR",
+            errortip: "Il a peut-être été déplacé ou supprimé",
+            title: "Fichier non trouvé | Erreur 404"
+        }
+
+        disp.send = "./error-pages/error.html"
+        result.setHeader("Content-Type", "text/html")
+        result.statusCode = disp.code
+        fs.readFile(disp.send, (error, data) => {
+            let returnedPage = undefined
+            if (!error) {
+                returnedPage = (
+                    data.toString()
+                        .replaceAll("{{errorcontent}}", resultParams?.errorcontent || "")
+                        .replaceAll("{{filename}}", `<span id="file_name">${resultParams?.filename || ""}</span>`)
+                        .replaceAll("{{errorname}}", resultParams?.errorname || "")
+                        .replaceAll("{{errortip}}", resultParams?.errortip || "")
+                        .replaceAll("{{title}}", resultParams?.title || "")
+                )
+                result.end(returnedPage)
+            }
+            else {
+                result.statusCode = 500
+                result.end()
+            }
+        })
+    }
+}
+
+const server = http.createServer(async (request, result) => { // création du server
     let name = request.url
     console.log(name)
     name = __dirname + (name)
+    name = name.split("?").shift()
+    name = name.split("#").shift()
     let segments = name.split(/\//)
     let lastSegment = segments[segments.length - 1]
     console.log(lastSegment)
     if (! /\./.test(lastSegment)) { // sans extention donc est peut-être un dossier (mais peut-être aussi un exécutable Linux)
         console.log("There is not point in '" + lastSegment + "'")
         // On teste si '{requete}/index.html' existe
-        if (fs.existsSync(/\/$/.test(name) ? name + "index.html" : name + "/index.html")) {
+        if (! (fs.existsSync(name) && (! fs.statSync(name).isDirectory()))) {
             name = /\/$/.test(name) ? name + "index.html" : name + "/index.html" // ajout d'un "index.html"
         }
         // Sinon, on la garde telle qu'elle
     }
     console.log(name)
     expens =  name.split(/\./)[name.split(/\./).length-1].toLowerCase()
-    fs.readFile(name, expens == "js" || expens == "html" || expens == "htm" || expens == "css" || expens == "svg" ? {encoding : "utf-8"} : {}, (err, data) => {
+    fs.readFile(name, expens == "js" || expens == "html" || expens == "htm" || expens == "css" || expens == "svg" ? {encoding : "utf-8"} : {}, async (err, data) => {
         if (err) {
-            let disp = {
-                status : "ERROR",
-                url : name.replaceAll("C:\\Users\\takvoriane", "").replaceAll("/home/elapp", ""),
-                code : 404,
-                datetime : new Date().toString(),
-                //send : "./404-error.html", 
-            }
-            result.statusCode = disp.code
-            if (request.url.split(".")[request.url.split(".").length - 1] == "html") {
-                disp.send = "./404-error.html"
-                result.setHeader("Content-Type", "text/html")
-                fs.readFile(disp.send, {encoding : "utf-8"}, (mistake, datas) =>{
-                    result.end(datas)
-                })
-            }
-            else {
-                result.setHeader("Content-Type", "text/javascript")
-                disp.send = `console.log("${disp}")`
-                result.end(disp.send)
-            }
-            console.table(disp)
-            //fs.readFile(disp.send, {encoding : "utf-8"}, (mistake, datas) =>{
-                //result.end(datas)
-            //})
+            send404(name, request, result)
         }
         else {
-            let type
-            switch (name.split(/\./)[name.split(/\./).length-1].toLowerCase()) {
-                case "htm":
-                case "html":
-                    type = "text/html"
-                    break
-                case "js":
-                    type = "application/javascript"
-                    break
-                case "css":
-                    type = "text/css"
-                    break
-                case "ico":
-                    type = "image/x-icon"
-                    break
-                case "json":
-                    type = "application/json"
-                    break
-                case "jpg":
-                case "jpeg":
-                    type = "image/jpeg"
-                    break
-                case "png":
-                    type = "image/png"
-                    break
-                case "svg":
-                    type = "image/svg+xml"
-                    break
-                case "pdf":
-                    type = "application/pdf"
-                    break
-                case "ts":
-                    type = "application/typescript"
-                    break
-                case "tex":
-                    type = "application/x-tex"
-                    break
-                case "py":
-                    type = "application/x-python"
-                    break
-                case "c":
-                    type = "application/x-c"
-                    break
-                case "woff2":
-                    type = "font/woff2"
-                    break
-                case "ttf":
-                    type = "font/ttf"
-                    break
-                case "exe":
-                default:
-                    // It's not very correct but I will considerating that the other files are Linux executables
-                    type = "application/x-executable"
-            }
+            let type = await getMime(name)
             let disp = {
                 status : "OK",
                 url : name.replaceAll("C:\\Users\\takvoriane\\", ""),

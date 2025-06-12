@@ -1,0 +1,18 @@
+@font-face {
+    font-family: Arial;
+    src: 
+        local("Arial"),
+        url("/Arial/arial.ttf");
+}
+
+:not(code) {
+    font-family: Arial;
+}
+
+#file_name {
+    color: red;
+}
+
+#error_name {
+    color: grey;
+}
