@@ -1,0 +1,24 @@
+{
+  "name": "color-format-converter",
+  "version": "1.0.0",
+  "description": "A color format converter, on the Web. It is available at https://color-formaat-converter.onrender.com/.",
+  "homepage": "https://github.com/eliotttak/color-format-converter#readme",
+  "bugs": {
+    "url": "https://github.com/eliotttak/color-format-converter/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eliotttak/color-format-converter.git"
+  },
+  "license": "ISC",
+  "author": "Eliott TAKVORIAN",
+  "type": "commonjs",
+  "main": "Node.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "file-type": "^21.0.0",
+    "node-mime-types": "^1.1.2"
+  }
+}
