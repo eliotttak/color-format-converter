@@ -129,7 +129,7 @@ function roundNumber(number, digits = 0) {
 /**
  * @description This function updates the slides and number inputs, and show the convertion results.
  */
-(function updateColorValues() {
+function updateColorValues() {
     let c = cRange.val()
     let m = mRange.val()
     let y = yRange.val()
@@ -152,7 +152,9 @@ function roundNumber(number, digits = 0) {
     gSpan.html(rgbResult.g)
     bSpan.html(rgbResult.b)
     lastRgbResult = rgbResult
-})()
+}
+
+updateColorValues()
 
 $.ajaxSetup({
     headers: {
