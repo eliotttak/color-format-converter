@@ -18,7 +18,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "file-type": "^21.1.0",
+    "file-type": "^21.1.1",
     "node-mime-types": "^1.1.2"
   }
 }
